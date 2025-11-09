@@ -295,19 +295,6 @@ const CoachDashboard = ({ user }) => {
 
   return (
     <div className="min-h-screen bg-slate-50 relative">
-      {/* Faded Football Pitch Background */}
-      <div 
-        className="fixed inset-0 z-0 pointer-events-none"
-        style={{
-          backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68a9c1edbf77d9233404b226/2f17c4a5e_AdobeStock_865516778.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.40,
-          top: '0px'
-        }}
-      />
-
       {/* Light Header Area */}
       <div className="p-4 sm:p-6 bg-white border-b border-slate-200 relative z-10">
         <div className="max-w-7xl mx-auto w-full">

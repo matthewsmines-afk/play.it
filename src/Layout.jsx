@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -91,18 +90,24 @@ export default function Layout({ children, currentPageName }) {
               font-family: 'Inter', sans-serif;
             }
 
-            /* GLOBAL FONT RULES - NO ITALICS, BLACK/GREY TEXT ONLY */
+            /* GLOBAL FONT RULES - NO ITALICS */
             * {
               font-style: normal !important;
             }
             
-            /* GLOBAL FONT SIZE CAP - Maximum 16px (1rem) anywhere */
-            *, h1, h2, h3, h4, h5, h6, p, span, div, label, input, textarea, select, button {
+            /* CRITICAL: SITE-WIDE FONT SIZE CAP - 16px MAXIMUM */
+            html *, 
+            body *, 
+            h1, h2, h3, h4, h5, h6, 
+            p, span, div, a, button, input, textarea, select, label,
+            .text-xs, .text-sm, .text-base, .text-lg, .text-xl, 
+            .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl,
+            [class*="text-"] {
               font-size: 16px !important;
-              max-font-size: 16px !important;
+              line-height: 1.5 !important;
             }
 
-            /* Slightly smaller for very small text */
+            /* Smaller sizes for specific needs */
             .text-xs, [class*="text-xs"] {
               font-size: 12px !important;
             }
@@ -111,19 +116,18 @@ export default function Layout({ children, currentPageName }) {
               font-size: 14px !important;
             }
 
-            .text-base, [class*="text-base"] {
+            /* Main headings and bold text - match "Basic Information" */
+            h1, h2, h3, h4, h5, h6,
+            .font-bold, .font-semibold, [class*="font-bold"], [class*="font-semibold"] {
               font-size: 16px !important;
+              font-weight: 700 !important;
+              line-height: 1.4 !important;
             }
 
-            /* Override any larger text classes */
-            .text-lg, [class*="text-lg"],
-            .text-xl, [class*="text-xl"],
-            .text-2xl, [class*="text-2xl"],
-            .text-3xl, [class*="text-3xl"],
-            .text-4xl, [class*="text-4xl"],
-            .text-5xl, [class*="text-5xl"],
-            .text-6xl, [class*="text-6xl"] {
+            /* Regular weight text */
+            .font-normal, .font-light, [class*="font-normal"], [class*="font-light"] {
               font-size: 16px !important;
+              font-weight: 400 !important;
             }
             
             /* Standardize all text colors for light backgrounds */
@@ -212,9 +216,22 @@ export default function Layout({ children, currentPageName }) {
         </style>
 
         <SidebarProvider>
-          <div className="flex w-full min-h-screen theme-charcoal">
+          <div className="flex w-full min-h-screen theme-charcoal relative">
+            {/* SITE-WIDE Background Image */}
+            <div 
+              className="fixed inset-0 z-0 pointer-events-none"
+              style={{
+                backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68a9c1edbf77d9233404b226/2f17c4a5e_AdobeStock_865516778.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.40,
+                top: '0px'
+              }}
+            />
+
             {/* --- DESKTOP SIDEBAR --- */}
-            <Sidebar className="bg-white hidden md:flex">
+            <Sidebar className="bg-white hidden md:flex relative z-20">
               <SidebarHeader className="p-6 bg-white">
                 <img src={newLogoUrl} alt="PLAY.IT Logo" className="h-8" />
               </SidebarHeader>
@@ -270,7 +287,7 @@ export default function Layout({ children, currentPageName }) {
             </Sidebar>
 
             {/* --- MAIN CONTENT AREA (Mobile and Desktop) --- */}
-            <main className="flex-1 flex flex-col w-full min-w-0 min-h-screen">
+            <main className="flex-1 flex flex-col w-full min-w-0 min-h-screen relative z-10">
               {/* --- MOBILE HEADER --- */}
               <header
                 className="sticky top-0 z-20 px-4 py-3 md:hidden"
