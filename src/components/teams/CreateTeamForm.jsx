@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Team } from '@/entities/Team';
@@ -87,7 +86,6 @@ export default function CreateTeamForm() {
         ...formData,
         coaches: [currentUser.id],
         is_active: true,
-        // Ensure club_id is null if it's an empty string for API compatibility
         club_id: formData.club_id === '' ? null : formData.club_id,
       };
 
@@ -115,7 +113,7 @@ export default function CreateTeamForm() {
       <div className="p-4 space-y-4 max-w-2xl mx-auto">
         <form onSubmit={handleSubmit} className="space-y-4">
           
-          {/* Basic Info Card */}
+          {/* Basic Info Card - REFERENCE STYLE */}
           <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-bold text-slate-900">Basic Information</CardTitle>
@@ -123,7 +121,7 @@ export default function CreateTeamForm() {
             </CardHeader>
             <CardContent className="space-y-4 bg-transparent">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-medium text-slate-800">
+                <Label htmlFor="name" className="text-xs font-bold text-slate-900">
                   Team Name <span className="text-red-500">*</span>
                 </Label>
                 <Input
@@ -131,7 +129,7 @@ export default function CreateTeamForm() {
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   placeholder="e.g., Eagles Under 16"
-                  className={`bg-white text-slate-900 ${errors.name ? 'border-red-500' : ''}`}
+                  className={`bg-white text-slate-900 text-sm ${errors.name ? 'border-red-500' : ''}`}
                 />
                 {errors.name && (
                   <p className="text-xs text-red-500">{errors.name}</p>
@@ -139,19 +137,19 @@ export default function CreateTeamForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="age_group" className="text-sm font-medium text-slate-800">
+                <Label htmlFor="age_group" className="text-xs font-bold text-slate-900">
                   Age Group <span className="text-red-500">*</span>
                 </Label>
                 <Select 
                   value={formData.age_group} 
                   onValueChange={(value) => handleInputChange('age_group', value)}
                 >
-                  <SelectTrigger id="age_group" className={`bg-white text-slate-900 ${errors.age_group ? 'border-red-500' : ''}`}>
+                  <SelectTrigger id="age_group" className={`bg-white text-slate-900 text-sm ${errors.age_group ? 'border-red-500' : ''}`}>
                     <SelectValue placeholder="Select age group..." />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
                     {AGE_GROUPS.map(group => (
-                      <SelectItem key={group} value={group}>{group}</SelectItem>
+                      <SelectItem key={group} value={group} className="text-sm">{group}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -162,33 +160,33 @@ export default function CreateTeamForm() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
-                  <Label htmlFor="sport" className="text-sm font-medium text-slate-800">Sport</Label>
+                  <Label htmlFor="sport" className="text-xs font-bold text-slate-900">Sport</Label>
                   <Select value={formData.sport} onValueChange={(value) => handleInputChange('sport', value)}>
-                    <SelectTrigger id="sport" className="bg-white text-slate-900">
+                    <SelectTrigger id="sport" className="bg-white text-slate-900 text-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
-                      <SelectItem value="football">Football</SelectItem>
-                      <SelectItem value="rugby">Rugby</SelectItem>
-                      <SelectItem value="cricket">Cricket</SelectItem>
-                      <SelectItem value="basketball">Basketball</SelectItem>
-                      <SelectItem value="tennis">Tennis</SelectItem>
+                      <SelectItem value="football" className="text-sm">Football</SelectItem>
+                      <SelectItem value="rugby" className="text-sm">Rugby</SelectItem>
+                      <SelectItem value="cricket" className="text-sm">Cricket</SelectItem>
+                      <SelectItem value="basketball" className="text-sm">Basketball</SelectItem>
+                      <SelectItem value="tennis" className="text-sm">Tennis</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="default_match_format" className="text-sm font-medium text-slate-800">Match Format</Label>
+                  <Label htmlFor="default_match_format" className="text-xs font-bold text-slate-900">Match Format</Label>
                   <Select value={formData.default_match_format} onValueChange={(value) => handleInputChange('default_match_format', value)}>
-                    <SelectTrigger id="default_match_format" className="bg-white text-slate-900">
+                    <SelectTrigger id="default_match_format" className="bg-white text-slate-900 text-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-white">
-                      <SelectItem value="3v3">3v3</SelectItem>
-                      <SelectItem value="5v5">5v5</SelectItem>
-                      <SelectItem value="7v7">7v7</SelectItem>
-                      <SelectItem value="9v9">9v9</SelectItem>
-                      <SelectItem value="11v11">11v11</SelectItem>
+                      <SelectItem value="3v3" className="text-sm">3v3</SelectItem>
+                      <SelectItem value="5v5" className="text-sm">5v5</SelectItem>
+                      <SelectItem value="7v7" className="text-sm">7v7</SelectItem>
+                      <SelectItem value="9v9" className="text-sm">9v9</SelectItem>
+                      <SelectItem value="11v11" className="text-sm">11v11</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -204,15 +202,15 @@ export default function CreateTeamForm() {
             </CardHeader>
             <CardContent className="space-y-4 bg-transparent">
               <div className="space-y-2">
-                <Label htmlFor="club_id" className="text-sm font-medium text-slate-800">Select Club</Label>
+                <Label htmlFor="club_id" className="text-xs font-bold text-slate-900">Select Club</Label>
                 <Select value={formData.club_id} onValueChange={(value) => handleInputChange('club_id', value)}>
-                  <SelectTrigger id="club_id" className="bg-white text-slate-900">
+                  <SelectTrigger id="club_id" className="bg-white text-slate-900 text-sm">
                     <SelectValue placeholder="No club (independent team)" />
                   </SelectTrigger>
                   <SelectContent className="bg-white">
-                    <SelectItem value={null}>No club (independent team)</SelectItem>
+                    <SelectItem value={null} className="text-sm">No club (independent team)</SelectItem>
                     {clubs.map(club => (
-                      <SelectItem key={club.id} value={club.id}>
+                      <SelectItem key={club.id} value={club.id} className="text-sm">
                         {club.name}
                       </SelectItem>
                     ))}
@@ -231,7 +229,7 @@ export default function CreateTeamForm() {
             <CardContent className="space-y-4 bg-transparent">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="primary_color" className="text-sm font-medium text-slate-800">Primary Color</Label>
+                  <Label htmlFor="primary_color" className="text-xs font-bold text-slate-900">Primary Color</Label>
                   <div className="flex items-center gap-2">
                     <Input
                       id="primary_color"
@@ -245,13 +243,13 @@ export default function CreateTeamForm() {
                       value={formData.primary_color}
                       onChange={(e) => handleInputChange('primary_color', e.target.value)}
                       placeholder="#000000"
-                      className="bg-white text-slate-900"
+                      className="bg-white text-slate-900 text-sm"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="secondary_color" className="text-sm font-medium text-slate-800">Secondary Color</Label>
+                  <Label htmlFor="secondary_color" className="text-xs font-bold text-slate-900">Secondary Color</Label>
                   <div className="flex items-center gap-2">
                     <Input
                       id="secondary_color"
@@ -265,7 +263,7 @@ export default function CreateTeamForm() {
                       value={formData.secondary_color}
                       onChange={(e) => handleInputChange('secondary_color', e.target.value)}
                       placeholder="#ffffff"
-                      className="bg-white text-slate-900"
+                      className="bg-white text-slate-900 text-sm"
                     />
                   </div>
                 </div>
@@ -281,7 +279,7 @@ export default function CreateTeamForm() {
             </CardHeader>
             <CardContent className="space-y-4 bg-transparent">
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-slate-800">Home Ground</Label>
+                <Label className="text-xs font-bold text-slate-900">Home Ground</Label>
                 <LocationPicker
                   value={formData.home_ground_location}
                   onChange={(location) => handleInputChange('home_ground_location', location)}
@@ -290,7 +288,7 @@ export default function CreateTeamForm() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-slate-800">Training Ground</Label>
+                <Label className="text-xs font-bold text-slate-900">Training Ground</Label>
                 <LocationPicker
                   value={formData.training_ground_location}
                   onChange={(location) => handleInputChange('training_ground_location', location)}
@@ -305,7 +303,7 @@ export default function CreateTeamForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-12 text-base font-semibold bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600"
+              className="w-full h-12 text-sm font-bold bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600"
             >
               {isSubmitting ? (
                 <>

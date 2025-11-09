@@ -37,7 +37,7 @@ export default function CreateTeam() {
 
     return (
         <div className="min-h-screen bg-transparent relative">
-            {/* Header matching Coach Dashboard style */}
+            {/* Header - matching card title proportions */}
             <div className="p-4 sm:p-6 bg-white/95 backdrop-blur-sm border-b border-slate-200 relative z-10">
                 <div className="max-w-7xl mx-auto w-full">
                     <div className="flex items-start gap-4">
@@ -50,8 +50,8 @@ export default function CreateTeam() {
                             <ArrowLeft className="w-5 h-5 text-slate-900" />
                         </Button>
                         <div className="flex-1">
-                            <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900">Create New Team</h1>
-                            <p className="text-sm text-slate-600 font-light mt-2">
+                            <h1 className="text-base font-bold text-slate-900">Create New Team</h1>
+                            <p className="text-xs text-slate-600 mt-1">
                                 Set up your team with essential details and locations
                             </p>
                         </div>
