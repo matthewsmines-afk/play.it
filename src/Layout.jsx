@@ -161,15 +161,15 @@ export default function Layout({ children, currentPageName }) {
               font-size: 14px !important;
             }
 
-            /* ===== TRANSPARENT BACKGROUNDS - SHOW PITCH THROUGH ===== */
+            /* ===== MAXIMUM TRANSPARENCY - SHOW PITCH EVERYWHERE ===== */
             
-            /* All Card components - semi-transparent white with blur */
+            /* All Card components - highly transparent with strong blur */
             [class*="Card"],
             .card,
             [data-card] {
-              background-color: rgba(255, 255, 255, 0.85) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
+              background-color: rgba(255, 255, 255, 0.65) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
             }
 
             /* Card headers specifically */
@@ -184,29 +184,29 @@ export default function Layout({ children, currentPageName }) {
               background-color: transparent !important;
             }
 
-            /* White backgrounds - make semi-transparent */
-            .bg-white,
-            [class*="bg-white"],
-            [style*="background-color: white"],
-            [style*="background-color: #fff"],
-            [style*="background-color: #ffffff"] {
-              background-color: rgba(255, 255, 255, 0.85) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
+            /* White backgrounds - make highly transparent */
+            .bg-white:not(.sidebar *),
+            [class*="bg-white"]:not(.sidebar *),
+            [style*="background-color: white"]:not(.sidebar *),
+            [style*="background-color: #fff"]:not(.sidebar *),
+            [style*="background-color: #ffffff"]:not(.sidebar *) {
+              background-color: rgba(255, 255, 255, 0.60) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
             }
 
-            /* Grey backgrounds - make semi-transparent */
-            .bg-gray-50,
-            .bg-gray-100,
-            .bg-slate-50,
-            .bg-slate-100,
-            [class*="bg-gray-50"],
-            [class*="bg-gray-100"],
-            [class*="bg-slate-50"],
-            [class*="bg-slate-100"] {
-              background-color: rgba(248, 250, 252, 0.75) !important;
-              backdrop-filter: blur(8px) !important;
-              -webkit-backdrop-filter: blur(8px) !important;
+            /* Grey backgrounds - make highly transparent */
+            .bg-gray-50:not(.sidebar *),
+            .bg-gray-100:not(.sidebar *),
+            .bg-slate-50:not(.sidebar *),
+            .bg-slate-100:not(.sidebar *),
+            [class*="bg-gray-50"]:not(.sidebar *),
+            [class*="bg-gray-100"]:not(.sidebar *),
+            [class*="bg-slate-50"]:not(.sidebar *),
+            [class*="bg-slate-100"]:not(.sidebar *) {
+              background-color: rgba(248, 250, 252, 0.50) !important;
+              backdrop-filter: blur(10px) !important;
+              -webkit-backdrop-filter: blur(10px) !important;
             }
 
             /* Specific overrides for elements that need to stay transparent */
@@ -221,9 +221,9 @@ export default function Layout({ children, currentPageName }) {
             [data-radix-dialog-content],
             .modal,
             .dialog {
-              background-color: rgba(255, 255, 255, 0.90) !important;
-              backdrop-filter: blur(12px) !important;
-              -webkit-backdrop-filter: blur(12px) !important;
+              background-color: rgba(255, 255, 255, 0.75) !important;
+              backdrop-filter: blur(15px) !important;
+              -webkit-backdrop-filter: blur(15px) !important;
             }
 
             /* Dropdown menus - semi-transparent */
@@ -231,20 +231,20 @@ export default function Layout({ children, currentPageName }) {
             [data-radix-dropdown-content],
             [data-radix-select-content],
             .dropdown-content {
-              background-color: rgba(255, 255, 255, 0.90) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
+              background-color: rgba(255, 255, 255, 0.80) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
             }
 
             /* Popover content - semi-transparent */
             [data-radix-popover-content],
             .popover-content {
-              background-color: rgba(255, 255, 255, 0.90) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
+              background-color: rgba(255, 255, 255, 0.80) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
             }
 
-            /* Input fields - keep readable but slightly transparent */
+            /* Input fields - keep readable but transparent */
             input[type="text"],
             input[type="email"],
             input[type="number"],
@@ -252,17 +252,26 @@ export default function Layout({ children, currentPageName }) {
             input[type="tel"],
             textarea,
             select {
-              background-color: rgba(255, 255, 255, 0.80) !important;
-              backdrop-filter: blur(5px) !important;
-              -webkit-backdrop-filter: blur(5px) !important;
+              background-color: rgba(255, 255, 255, 0.70) !important;
+              backdrop-filter: blur(8px) !important;
+              -webkit-backdrop-filter: blur(8px) !important;
             }
 
             /* Header areas with white/grey backgrounds */
-            header[class*="bg-white"],
-            .header[class*="bg-white"] {
-              background-color: rgba(255, 255, 255, 0.85) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
+            header[class*="bg-white"]:not([style*="background-color: #2D2C29"]),
+            .header[class*="bg-white"]:not([style*="background-color: #2D2C29"]) {
+              background-color: rgba(255, 255, 255, 0.65) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
+            }
+
+            /* Keep sidebar fully opaque for readability */
+            .sidebar,
+            .sidebar *,
+            [data-sidebar],
+            [data-sidebar] * {
+              background-color: white !important;
+              backdrop-filter: none !important;
             }
 
             /* Headings - allow hierarchy but keep controlled */
@@ -374,9 +383,9 @@ export default function Layout({ children, currentPageName }) {
 
             /* --- White content pane styling --- */
             .content-pane {
-                background-color: rgba(255, 255, 255, 0.85) !important;
-                backdrop-filter: blur(10px) !important;
-                -webkit-backdrop-filter: blur(10px) !important;
+                background-color: rgba(255, 255, 255, 0.65) !important;
+                backdrop-filter: blur(12px) !important;
+                -webkit-backdrop-filter: blur(12px) !important;
                 color: #111827;
                 border-top-left-radius: 2rem;
                 border-top-right-radius: 2rem;
@@ -409,7 +418,7 @@ export default function Layout({ children, currentPageName }) {
             <div className="pitch-background" />
 
             {/* --- DESKTOP SIDEBAR --- */}
-            <Sidebar className="bg-white hidden md:flex relative z-20">
+            <Sidebar className="sidebar bg-white hidden md:flex relative z-20">
               <SidebarHeader className="p-6 bg-white">
                 <img src={newLogoUrl} alt="PLAY.IT Logo" className="h-8" />
               </SidebarHeader>
