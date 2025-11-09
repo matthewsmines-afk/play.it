@@ -97,7 +97,7 @@ export default function Layout({ children, currentPageName }) {
             
             /* REFINED FONT SIZE SYSTEM */
             /* Body text and most elements - 16px max */
-            p, span, div, a, button, input, textarea, select, label,
+            p, span, div, a, button, input, textarea, label,
             .text-base, .text-lg, .text-xl {
               font-size: 16px !important;
               line-height: 1.5 !important;
@@ -109,6 +109,17 @@ export default function Layout({ children, currentPageName }) {
             }
             
             .text-sm, [class*="text-sm"] {
+              font-size: 14px !important;
+            }
+
+            /* DROPDOWN/SELECT SPECIFIC - SITE WIDE */
+            select, 
+            [role="option"],
+            [role="menuitem"],
+            [data-radix-collection-item],
+            .select-item,
+            [class*="SelectItem"],
+            [class*="select-item"] {
               font-size: 14px !important;
             }
 
