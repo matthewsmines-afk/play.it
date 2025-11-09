@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -93,6 +94,36 @@ export default function Layout({ children, currentPageName }) {
             /* GLOBAL FONT RULES - NO ITALICS, BLACK/GREY TEXT ONLY */
             * {
               font-style: normal !important;
+            }
+            
+            /* GLOBAL FONT SIZE CAP - Maximum 16px (1rem) anywhere */
+            *, h1, h2, h3, h4, h5, h6, p, span, div, label, input, textarea, select, button {
+              font-size: 16px !important;
+              max-font-size: 16px !important;
+            }
+
+            /* Slightly smaller for very small text */
+            .text-xs, [class*="text-xs"] {
+              font-size: 12px !important;
+            }
+            
+            .text-sm, [class*="text-sm"] {
+              font-size: 14px !important;
+            }
+
+            .text-base, [class*="text-base"] {
+              font-size: 16px !important;
+            }
+
+            /* Override any larger text classes */
+            .text-lg, [class*="text-lg"],
+            .text-xl, [class*="text-xl"],
+            .text-2xl, [class*="text-2xl"],
+            .text-3xl, [class*="text-3xl"],
+            .text-4xl, [class*="text-4xl"],
+            .text-5xl, [class*="text-5xl"],
+            .text-6xl, [class*="text-6xl"] {
+              font-size: 16px !important;
             }
             
             /* Standardize all text colors for light backgrounds */

@@ -111,7 +111,7 @@ export default function CreateTeamForm() {
   };
 
   return (
-    <div className="pb-32">
+    <div className="pb-28 md:pb-8">
       <div className="p-4 space-y-4 max-w-2xl mx-auto">
         <form onSubmit={handleSubmit} className="space-y-4">
           
@@ -300,8 +300,8 @@ export default function CreateTeamForm() {
             </CardContent>
           </Card>
 
-          {/* Submit Button - Fixed at bottom on mobile with extra padding for bottom nav */}
-          <div className="fixed bottom-16 left-0 right-0 p-4 bg-white border-t border-slate-200 md:relative md:border-0 md:bottom-0 z-50">
+          {/* Submit Button - Static at bottom with padding for home button */}
+          <div className="pt-2">
             <Button
               type="submit"
               disabled={isSubmitting}
