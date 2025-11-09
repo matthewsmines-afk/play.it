@@ -84,7 +84,7 @@ export default function Layout({ children, currentPageName }) {
       >
         <style>
           {`
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
             
             body {
               font-family: 'Inter', sans-serif;
@@ -95,48 +95,163 @@ export default function Layout({ children, currentPageName }) {
               font-style: normal !important;
             }
             
-            /* REFINED FONT SIZE SYSTEM */
-            /* Body text and most elements - 16px max */
-            p, span, div, a, button, input, textarea, label,
-            .text-base, .text-lg, .text-xl {
-              font-size: 16px !important;
+            /* ===== REFINED FONT HIERARCHY - MATCHING CREATE TEAM PAGE ===== */
+            
+            /* Base body text - 14px regular */
+            body, p, span, div, a, li {
+              font-size: 14px !important;
+              font-weight: 400 !important;
               line-height: 1.5 !important;
+              color: #1e293b !important;
             }
 
-            /* Smaller sizes for specific needs */
+            /* Page Titles (h1) - 24px bold black */
+            h1, .text-2xl, .text-3xl {
+              font-size: 24px !important;
+              font-weight: 700 !important;
+              line-height: 1.3 !important;
+              color: #0f172a !important;
+            }
+
+            /* Card Section Headers (h2) - 18px bold black */
+            h2, [class*="CardTitle"], .card-title {
+              font-size: 18px !important;
+              font-weight: 700 !important;
+              line-height: 1.4 !important;
+              color: #0f172a !important;
+            }
+
+            /* Subsection Headers (h3) - 16px bold black */
+            h3 {
+              font-size: 16px !important;
+              font-weight: 700 !important;
+              line-height: 1.4 !important;
+              color: #0f172a !important;
+            }
+
+            /* Small Headers (h4, h5, h6) - 14px bold black */
+            h4, h5, h6 {
+              font-size: 14px !important;
+              font-weight: 700 !important;
+              line-height: 1.4 !important;
+              color: #0f172a !important;
+            }
+
+            /* Page subtitles and section descriptions - 13px regular muted */
+            .text-muted, 
+            .text-slate-500, 
+            .text-slate-600, 
+            .text-gray-500, 
+            .text-gray-600,
+            [class*="text-muted"] {
+              font-size: 13px !important;
+              font-weight: 400 !important;
+              color: #64748b !important;
+            }
+
+            /* Form labels - 14px bold black */
+            label,
+            [class*="Label"] {
+              font-size: 14px !important;
+              font-weight: 700 !important;
+              color: #0f172a !important;
+            }
+
+            /* Input fields, textareas, selects - 14px regular */
+            input[type="text"],
+            input[type="email"],
+            input[type="number"],
+            input[type="password"],
+            input[type="tel"],
+            textarea,
+            select {
+              font-size: 14px !important;
+              font-weight: 400 !important;
+              color: #1e293b !important;
+            }
+
+            /* Input placeholders - 14px regular muted */
+            ::placeholder {
+              font-size: 14px !important;
+              font-weight: 400 !important;
+              color: #94a3b8 !important;
+              font-style: normal !important;
+            }
+
+            /* Buttons - 14px semibold */
+            button {
+              font-size: 14px !important;
+              font-weight: 600 !important;
+              line-height: 1.4 !important;
+            }
+
+            /* Extra small text - 12px regular */
             .text-xs, [class*="text-xs"] {
               font-size: 12px !important;
+              font-weight: 400 !important;
             }
             
+            /* Small text - 13px regular */
             .text-sm, [class*="text-sm"] {
-              font-size: 14px !important;
+              font-size: 13px !important;
+              font-weight: 400 !important;
             }
 
-            /* AGGRESSIVE DROPDOWN/SELECT FONT SIZE RULES - SITE WIDE - HIGHEST PRIORITY */
-            /* Target the select trigger button */
+            /* Base/medium text - 14px regular */
+            .text-base, [class*="text-base"] {
+              font-size: 14px !important;
+              font-weight: 400 !important;
+            }
+
+            /* Large text - 16px */
+            .text-lg, [class*="text-lg"] {
+              font-size: 16px !important;
+            }
+
+            /* Extra large text - 18px */
+            .text-xl, [class*="text-xl"] {
+              font-size: 18px !important;
+            }
+
+            /* Bold text modifier */
+            .font-bold, .font-semibold, [class*="font-bold"], [class*="font-semibold"] {
+              font-weight: 700 !important;
+            }
+
+            /* Regular weight text modifier */
+            .font-normal, .font-light, [class*="font-normal"], [class*="font-light"] {
+              font-weight: 400 !important;
+            }
+
+            /* ===== DROPDOWN/SELECT SPECIFIC RULES ===== */
+            
+            /* Select trigger button - 14px regular */
             button[role="combobox"],
             button[aria-haspopup="listbox"],
             [class*="SelectTrigger"],
             [class*="select-trigger"] {
               font-size: 14px !important;
+              font-weight: 400 !important;
             }
 
-            /* Target all text inside select triggers */
+            /* All text inside select triggers */
             button[role="combobox"] *,
             button[aria-haspopup="listbox"] *,
             [class*="SelectTrigger"] *,
             [class*="select-trigger"] * {
               font-size: 14px !important;
+              font-weight: 400 !important;
             }
 
-            /* Target SelectValue specifically (the placeholder/selected value display) */
+            /* SelectValue (placeholder/selected value) */
             [class*="SelectValue"],
             [data-placeholder],
             span[data-state] {
               font-size: 14px !important;
+              font-weight: 400 !important;
             }
 
-            /* Target dropdown items */
+            /* Dropdown items */
             select, 
             [role="option"],
             [role="menuitem"],
@@ -145,9 +260,10 @@ export default function Layout({ children, currentPageName }) {
             [class*="SelectItem"],
             [class*="select-item"] {
               font-size: 14px !important;
+              font-weight: 400 !important;
             }
 
-            /* Target dropdown content containers */
+            /* Dropdown content containers */
             [class*="SelectContent"],
             [role="listbox"],
             [data-radix-select-content] {
@@ -159,6 +275,7 @@ export default function Layout({ children, currentPageName }) {
             [role="listbox"] *,
             [data-radix-select-content] * {
               font-size: 14px !important;
+              font-weight: 400 !important;
             }
 
             /* ===== MAXIMUM TRANSPARENCY - SHOW PITCH EVERYWHERE ===== */
@@ -272,63 +389,6 @@ export default function Layout({ children, currentPageName }) {
             [data-sidebar] * {
               background-color: white !important;
               backdrop-filter: none !important;
-            }
-
-            /* Headings - allow hierarchy but keep controlled */
-            h1, .text-2xl, .text-3xl {
-              font-size: 24px !important;
-              font-weight: 700 !important;
-              line-height: 1.3 !important;
-            }
-
-            h2 {
-              font-size: 20px !important;
-              font-weight: 700 !important;
-              line-height: 1.3 !important;
-            }
-
-            h3, h4, h5, h6 {
-              font-size: 16px !important;
-              font-weight: 700 !important;
-              line-height: 1.4 !important;
-            }
-
-            /* Card titles and section headers */
-            [class*="CardTitle"], .card-title {
-              font-size: 16px !important;
-              font-weight: 700 !important;
-            }
-
-            /* Regular weight text */
-            .font-normal, .font-light, [class*="font-normal"], [class*="font-light"] {
-              font-weight: 400 !important;
-            }
-
-            /* Bold text */
-            .font-bold, .font-semibold, [class*="font-bold"], [class*="font-semibold"] {
-              font-weight: 700 !important;
-            }
-            
-            /* Standardize all text colors for light backgrounds */
-            body, p, span, div, label, input, textarea, select {
-              color: #1e293b !important; /* slate-800 */
-            }
-            
-            /* Headings */
-            h1, h2, h3, h4, h5, h6 {
-              color: #0f172a !important; /* slate-900 */
-              font-style: normal !important;
-            }
-            
-            /* Muted/secondary text */
-            .text-muted, .text-slate-500, .text-slate-600, .text-gray-500, .text-gray-600 {
-              color: #64748b !important; /* slate-500 */
-            }
-            
-            /* Input placeholders */
-            ::placeholder {
-              color: #94a3b8 !important; /* slate-400 */
-              font-style: normal !important;
             }
             
             /* CRITICAL: Text on dark backgrounds MUST be white/light */
