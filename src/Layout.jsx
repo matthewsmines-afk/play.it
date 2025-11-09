@@ -161,6 +161,110 @@ export default function Layout({ children, currentPageName }) {
               font-size: 14px !important;
             }
 
+            /* ===== TRANSPARENT BACKGROUNDS - SHOW PITCH THROUGH ===== */
+            
+            /* All Card components - semi-transparent white with blur */
+            [class*="Card"],
+            .card,
+            [data-card] {
+              background-color: rgba(255, 255, 255, 0.85) !important;
+              backdrop-filter: blur(10px) !important;
+              -webkit-backdrop-filter: blur(10px) !important;
+            }
+
+            /* Card headers specifically */
+            [class*="CardHeader"],
+            [class*="card-header"] {
+              background-color: transparent !important;
+            }
+
+            /* Card content */
+            [class*="CardContent"],
+            [class*="card-content"] {
+              background-color: transparent !important;
+            }
+
+            /* White backgrounds - make semi-transparent */
+            .bg-white,
+            [class*="bg-white"],
+            [style*="background-color: white"],
+            [style*="background-color: #fff"],
+            [style*="background-color: #ffffff"] {
+              background-color: rgba(255, 255, 255, 0.85) !important;
+              backdrop-filter: blur(10px) !important;
+              -webkit-backdrop-filter: blur(10px) !important;
+            }
+
+            /* Grey backgrounds - make semi-transparent */
+            .bg-gray-50,
+            .bg-gray-100,
+            .bg-slate-50,
+            .bg-slate-100,
+            [class*="bg-gray-50"],
+            [class*="bg-gray-100"],
+            [class*="bg-slate-50"],
+            [class*="bg-slate-100"] {
+              background-color: rgba(248, 250, 252, 0.75) !important;
+              backdrop-filter: blur(8px) !important;
+              -webkit-backdrop-filter: blur(8px) !important;
+            }
+
+            /* Specific overrides for elements that need to stay transparent */
+            .bg-transparent,
+            [class*="bg-transparent"] {
+              background-color: transparent !important;
+              backdrop-filter: none !important;
+            }
+
+            /* Modal/Dialog backgrounds - semi-transparent */
+            [role="dialog"],
+            [data-radix-dialog-content],
+            .modal,
+            .dialog {
+              background-color: rgba(255, 255, 255, 0.90) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
+            }
+
+            /* Dropdown menus - semi-transparent */
+            [role="menu"],
+            [data-radix-dropdown-content],
+            [data-radix-select-content],
+            .dropdown-content {
+              background-color: rgba(255, 255, 255, 0.90) !important;
+              backdrop-filter: blur(10px) !important;
+              -webkit-backdrop-filter: blur(10px) !important;
+            }
+
+            /* Popover content - semi-transparent */
+            [data-radix-popover-content],
+            .popover-content {
+              background-color: rgba(255, 255, 255, 0.90) !important;
+              backdrop-filter: blur(10px) !important;
+              -webkit-backdrop-filter: blur(10px) !important;
+            }
+
+            /* Input fields - keep readable but slightly transparent */
+            input[type="text"],
+            input[type="email"],
+            input[type="number"],
+            input[type="password"],
+            input[type="tel"],
+            textarea,
+            select {
+              background-color: rgba(255, 255, 255, 0.80) !important;
+              backdrop-filter: blur(5px) !important;
+              -webkit-backdrop-filter: blur(5px) !important;
+            }
+
+            /* Header areas with white/grey backgrounds */
+            header[class*="bg-white"],
+            .header[class*="bg-white"] {
+              background-color: rgba(255, 255, 255, 0.85) !important;
+              backdrop-filter: blur(10px) !important;
+              -webkit-backdrop-filter: blur(10px) !important;
+            }
+
             /* Headings - allow hierarchy but keep controlled */
             h1, .text-2xl, .text-3xl {
               font-size: 24px !important;
@@ -270,8 +374,10 @@ export default function Layout({ children, currentPageName }) {
 
             /* --- White content pane styling --- */
             .content-pane {
-                background-color: white;
-                color: #111827; /* Tailwind gray-900 */
+                background-color: rgba(255, 255, 255, 0.85) !important;
+                backdrop-filter: blur(10px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                color: #111827;
                 border-top-left-radius: 2rem;
                 border-top-right-radius: 2rem;
                 margin-top: -1.25rem;
