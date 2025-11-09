@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from "react";
 import { Team } from "@/entities/Team";
 import { Player } from "@/entities/Player";
@@ -272,7 +271,7 @@ const CoachDashboard = ({ user }) => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-transparent flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900"></div>
       </div>
     );
@@ -294,9 +293,9 @@ const CoachDashboard = ({ user }) => {
   const safeEvents = Array.isArray(events) ? events : [];
 
   return (
-    <div className="min-h-screen bg-slate-50 relative">
-      {/* Light Header Area */}
-      <div className="p-4 sm:p-6 bg-white border-b border-slate-200 relative z-10">
+    <div className="min-h-screen bg-transparent relative">
+      {/* Light Header Area with semi-transparent white */}
+      <div className="p-4 sm:p-6 bg-white/95 backdrop-blur-sm border-b border-slate-200 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <div>
@@ -321,7 +320,7 @@ const CoachDashboard = ({ user }) => {
         </div>
       </div>
 
-      {/* Content Area */}
+      {/* Content Area with transparent background to show pitch */}
       <div className="p-4 sm:p-6 space-y-6 sm:space-y-8 w-full max-w-7xl mx-auto relative z-10">
         {seasonRolloverData && (
           <SeasonRolloverNotification
@@ -334,7 +333,7 @@ const CoachDashboard = ({ user }) => {
         {activeTab === "my_teams" && (
           <div className="space-y-8">
             {safeTeams.length === 0 ? (
-              <Card className="text-center py-16 card-shadow bg-white">
+              <Card className="text-center py-16 card-shadow bg-white/95 backdrop-blur-sm">
                 <CardContent className="px-6">
                   <Trophy className="w-16 h-16 mx-auto text-gray-300 mb-6" />
                   <h3 className="text-xl font-semibold text-gray-700 mb-3">No teams yet</h3>
@@ -450,7 +449,7 @@ function Dashboard() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-transparent flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900"></div>
         <p className="text-slate-900 ml-2">Loading...</p>
       </div>

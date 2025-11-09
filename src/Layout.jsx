@@ -84,7 +84,7 @@ export default function Layout({ children, currentPageName }) {
       >
         <style>
           {`
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
             
             body {
               font-family: 'Inter', sans-serif;
@@ -95,14 +95,10 @@ export default function Layout({ children, currentPageName }) {
               font-style: normal !important;
             }
             
-            /* CRITICAL: SITE-WIDE FONT SIZE CAP - 16px MAXIMUM */
-            html *, 
-            body *, 
-            h1, h2, h3, h4, h5, h6, 
+            /* REFINED FONT SIZE SYSTEM */
+            /* Body text and most elements - 16px max */
             p, span, div, a, button, input, textarea, select, label,
-            .text-xs, .text-sm, .text-base, .text-lg, .text-xl, 
-            .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl,
-            [class*="text-"] {
+            .text-base, .text-lg, .text-xl {
               font-size: 16px !important;
               line-height: 1.5 !important;
             }
@@ -116,18 +112,39 @@ export default function Layout({ children, currentPageName }) {
               font-size: 14px !important;
             }
 
-            /* Main headings and bold text - match "Basic Information" */
-            h1, h2, h3, h4, h5, h6,
-            .font-bold, .font-semibold, [class*="font-bold"], [class*="font-semibold"] {
+            /* Headings - allow hierarchy but keep controlled */
+            h1, .text-2xl, .text-3xl {
+              font-size: 24px !important;
+              font-weight: 700 !important;
+              line-height: 1.3 !important;
+            }
+
+            h2 {
+              font-size: 20px !important;
+              font-weight: 700 !important;
+              line-height: 1.3 !important;
+            }
+
+            h3, h4, h5, h6 {
               font-size: 16px !important;
               font-weight: 700 !important;
               line-height: 1.4 !important;
             }
 
+            /* Card titles and section headers */
+            [class*="CardTitle"], .card-title {
+              font-size: 16px !important;
+              font-weight: 700 !important;
+            }
+
             /* Regular weight text */
             .font-normal, .font-light, [class*="font-normal"], [class*="font-light"] {
-              font-size: 16px !important;
               font-weight: 400 !important;
+            }
+
+            /* Bold text */
+            .font-bold, .font-semibold, [class*="font-bold"], [class*="font-semibold"] {
+              font-weight: 700 !important;
             }
             
             /* Standardize all text colors for light backgrounds */
