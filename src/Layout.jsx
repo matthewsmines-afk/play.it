@@ -112,7 +112,31 @@ export default function Layout({ children, currentPageName }) {
               font-size: 14px !important;
             }
 
-            /* DROPDOWN/SELECT SPECIFIC - SITE WIDE */
+            /* AGGRESSIVE DROPDOWN/SELECT FONT SIZE RULES - SITE WIDE - HIGHEST PRIORITY */
+            /* Target the select trigger button */
+            button[role="combobox"],
+            button[aria-haspopup="listbox"],
+            [class*="SelectTrigger"],
+            [class*="select-trigger"] {
+              font-size: 14px !important;
+            }
+
+            /* Target all text inside select triggers */
+            button[role="combobox"] *,
+            button[aria-haspopup="listbox"] *,
+            [class*="SelectTrigger"] *,
+            [class*="select-trigger"] * {
+              font-size: 14px !important;
+            }
+
+            /* Target SelectValue specifically (the placeholder/selected value display) */
+            [class*="SelectValue"],
+            [data-placeholder],
+            span[data-state] {
+              font-size: 14px !important;
+            }
+
+            /* Target dropdown items */
             select, 
             [role="option"],
             [role="menuitem"],
@@ -120,6 +144,20 @@ export default function Layout({ children, currentPageName }) {
             .select-item,
             [class*="SelectItem"],
             [class*="select-item"] {
+              font-size: 14px !important;
+            }
+
+            /* Target dropdown content containers */
+            [class*="SelectContent"],
+            [role="listbox"],
+            [data-radix-select-content] {
+              font-size: 14px !important;
+            }
+
+            /* Ensure all children inside dropdowns are 14px */
+            [class*="SelectContent"] *,
+            [role="listbox"] *,
+            [data-radix-select-content] * {
               font-size: 14px !important;
             }
 
