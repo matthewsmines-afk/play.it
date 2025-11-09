@@ -192,13 +192,22 @@ export default function TeamDetails({ team, players = [], onBack, onUpdate }) {
                 </p>
               </div>
             </div>
-            <Button 
-              onClick={() => setIsEditing(true)} 
-              className="px-6 py-3 text-sm shadow-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0"
-            >
-              <Settings className="w-4 h-4 mr-2" />
-              Edit Team
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <Button 
+                onClick={handleAddPlayer}
+                className="px-6 py-3 text-sm shadow-lg w-full sm:w-auto bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white border-0"
+              >
+                <UserPlus className="w-4 h-4 mr-2" />
+                Add Player
+              </Button>
+              <Button 
+                onClick={() => setIsEditing(true)} 
+                className="px-6 py-3 text-sm shadow-lg w-full sm:w-auto bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0"
+              >
+                <Settings className="w-4 h-4 mr-2" />
+                Edit Team
+              </Button>
+            </div>
           </div>
 
           {/* Badges */}
@@ -264,7 +273,7 @@ export default function TeamDetails({ team, players = [], onBack, onUpdate }) {
               <h2 className="text-xl font-semibold text-slate-900">Team Roster</h2>
               <Button 
                 onClick={handleAddPlayer} 
-                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white"
               >
                 <UserPlus className="w-4 h-4 mr-2" />
                 Add Player
