@@ -1245,9 +1245,9 @@ export default function LiveMatch() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-transparent">
       {/* Header */}
-      <div className="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-30 flex justify-between items-center">
+      <div className="bg-white/95 backdrop-blur-sm border-b border-slate-200 px-4 py-3 sticky top-0 z-30 flex justify-between items-center">
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="sm" onClick={handleBackNavigation}>
             <ArrowLeft className="w-4 h-4" />

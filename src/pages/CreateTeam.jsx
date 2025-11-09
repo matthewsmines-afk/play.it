@@ -36,11 +36,9 @@ export default function CreateTeam() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 relative">
-            {/* Background is now handled by Layout - remove duplicate */}
-
+        <div className="min-h-screen bg-transparent relative">
             {/* Header matching Coach Dashboard style */}
-            <div className="p-4 sm:p-6 bg-white border-b border-slate-200 relative z-10">
+            <div className="p-4 sm:p-6 bg-white/95 backdrop-blur-sm border-b border-slate-200 relative z-10">
                 <div className="max-w-7xl mx-auto w-full">
                     <div className="flex items-start gap-4">
                         <Button 

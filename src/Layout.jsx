@@ -229,23 +229,29 @@ export default function Layout({ children, currentPageName }) {
                 position: relative;
                 z-index: 10;
             }
+
+            /* OPTIMIZED BACKGROUND IMAGE - Faster Loading */
+            .pitch-background {
+              position: fixed;
+              inset: 0;
+              z-index: 0;
+              pointer-events: none;
+              background-image: url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68a9c1edbf77d9233404b226/2f17c4a5e_AdobeStock_865516778.jpg');
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              opacity: 0.40;
+              will-change: transform;
+              transform: translateZ(0);
+              image-rendering: -webkit-optimize-contrast;
+            }
           `}
         </style>
 
         <SidebarProvider>
           <div className="flex w-full min-h-screen theme-charcoal relative">
-            {/* SITE-WIDE Background Image */}
-            <div 
-              className="fixed inset-0 z-0 pointer-events-none"
-              style={{
-                backgroundImage: 'url(https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68a9c1edbf77d9233404b226/2f17c4a5e_AdobeStock_865516778.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                opacity: 0.40,
-                top: '0px'
-              }}
-            />
+            {/* OPTIMIZED Background Image with CSS class */}
+            <div className="pitch-background" />
 
             {/* --- DESKTOP SIDEBAR --- */}
             <Sidebar className="bg-white hidden md:flex relative z-20">

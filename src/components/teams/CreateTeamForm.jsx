@@ -111,17 +111,17 @@ export default function CreateTeamForm() {
   };
 
   return (
-    <div className="pb-28 md:pb-8">
+    <div className="pb-28 md:pb-8 bg-transparent">
       <div className="p-4 space-y-4 max-w-2xl mx-auto">
         <form onSubmit={handleSubmit} className="space-y-4">
           
           {/* Basic Info Card */}
-          <Card className="bg-white border border-slate-200 shadow-sm">
+          <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-bold text-slate-900">Basic Information</CardTitle>
               <CardDescription className="text-xs text-slate-600">Essential team details</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 bg-white">
+            <CardContent className="space-y-4 bg-transparent">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium text-slate-800">
                   Team Name <span className="text-red-500">*</span>
@@ -197,12 +197,12 @@ export default function CreateTeamForm() {
           </Card>
 
           {/* Club Selection Card */}
-          <Card className="bg-white border border-slate-200 shadow-sm">
+          <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-bold text-slate-900">Club Affiliation</CardTitle>
               <CardDescription className="text-xs text-slate-600">Link team to a club (optional)</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 bg-white">
+            <CardContent className="space-y-4 bg-transparent">
               <div className="space-y-2">
                 <Label htmlFor="club_id" className="text-sm font-medium text-slate-800">Select Club</Label>
                 <Select value={formData.club_id} onValueChange={(value) => handleInputChange('club_id', value)}>
@@ -223,12 +223,12 @@ export default function CreateTeamForm() {
           </Card>
 
           {/* Team Colors Card */}
-          <Card className="bg-white border border-slate-200 shadow-sm">
+          <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-bold text-slate-900">Team Colors</CardTitle>
               <CardDescription className="text-xs text-slate-600">Choose your team's colors</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 bg-white">
+            <CardContent className="space-y-4 bg-transparent">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="primary_color" className="text-sm font-medium text-slate-800">Primary Color</Label>
@@ -274,12 +274,12 @@ export default function CreateTeamForm() {
           </Card>
 
           {/* Locations */}
-          <Card className="bg-white border border-slate-200 shadow-sm">
+          <Card className="bg-white/95 backdrop-blur-sm border border-slate-200 shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-bold text-slate-900">Locations</CardTitle>
               <CardDescription className="text-xs text-slate-600">Set home ground and training venue (optional)</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4 bg-white">
+            <CardContent className="space-y-4 bg-transparent">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-slate-800">Home Ground</Label>
                 <LocationPicker
@@ -300,7 +300,7 @@ export default function CreateTeamForm() {
             </CardContent>
           </Card>
 
-          {/* Submit Button - Static at bottom with padding for home button */}
+          {/* Submit Button */}
           <div className="pt-2">
             <Button
               type="submit"
