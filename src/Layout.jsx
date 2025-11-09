@@ -161,90 +161,104 @@ export default function Layout({ children, currentPageName }) {
               font-size: 14px !important;
             }
 
-            /* ===== TRANSPARENT BACKGROUNDS - SHOW PITCH THROUGH ===== */
+            /* ===== AGGRESSIVE TRANSPARENCY - NUCLEAR OPTION ===== */
             
-            /* All Card components - semi-transparent white with blur */
-            [class*="Card"],
-            .card,
-            [data-card] {
-              background-color: rgba(255, 255, 255, 0.85) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
-            }
-
-            /* Card headers specifically */
-            [class*="CardHeader"],
-            [class*="card-header"] {
-              background-color: transparent !important;
-            }
-
-            /* Card content */
-            [class*="CardContent"],
-            [class*="card-content"] {
-              background-color: transparent !important;
-            }
-
-            /* White backgrounds - make semi-transparent */
+            /* Target ALL possible white/grey background utilities with MAXIMUM SPECIFICITY */
             .bg-white,
-            [class*="bg-white"],
-            [style*="background-color: white"],
-            [style*="background-color: #fff"],
-            [style*="background-color: #ffffff"] {
-              background-color: rgba(255, 255, 255, 0.85) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
-            }
-
-            /* Grey backgrounds - make semi-transparent */
+            .bg-white\/95,
+            .bg-white\/90,
+            .bg-white\/80,
             .bg-gray-50,
             .bg-gray-100,
+            .bg-gray-200,
             .bg-slate-50,
             .bg-slate-100,
-            [class*="bg-gray-50"],
-            [class*="bg-gray-100"],
-            [class*="bg-slate-50"],
-            [class*="bg-slate-100"] {
-              background-color: rgba(248, 250, 252, 0.75) !important;
-              backdrop-filter: blur(8px) !important;
-              -webkit-backdrop-filter: blur(8px) !important;
-            }
-
-            /* Specific overrides for elements that need to stay transparent */
-            .bg-transparent,
-            [class*="bg-transparent"] {
-              background-color: transparent !important;
-              backdrop-filter: none !important;
-            }
-
-            /* Modal/Dialog backgrounds - semi-transparent */
-            [role="dialog"],
-            [data-radix-dialog-content],
-            .modal,
-            .dialog {
-              background-color: rgba(255, 255, 255, 0.90) !important;
+            .bg-slate-200,
+            [class*="bg-white"],
+            [class*="bg-gray-"],
+            [class*="bg-slate-"] {
+              background-color: rgba(255, 255, 255, 0.75) !important;
               backdrop-filter: blur(12px) !important;
               -webkit-backdrop-filter: blur(12px) !important;
             }
 
-            /* Dropdown menus - semi-transparent */
+            /* Specific override for /95 opacity classes */
+            .bg-white\/95,
+            [class*="bg-white/95"] {
+              background-color: rgba(255, 255, 255, 0.75) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
+            }
+
+            /* All Card components - ULTRA AGGRESSIVE */
+            [class*="Card"],
+            .card,
+            [data-card],
+            div[class*="rounded"] {
+              background-color: rgba(255, 255, 255, 0.75) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
+            }
+
+            /* Override inline styles that might be setting white/grey */
+            [style*="background-color: white"],
+            [style*="background-color: #fff"],
+            [style*="background-color: #ffffff"],
+            [style*="background-color: rgb(255, 255, 255)"],
+            [style*="background: white"],
+            [style*="background: #fff"] {
+              background-color: rgba(255, 255, 255, 0.75) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
+            }
+
+            /* Headers and top sections */
+            header,
+            .header,
+            [role="banner"] {
+              background-color: rgba(255, 255, 255, 0.75) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
+            }
+
+            /* Tab navigation areas */
+            nav,
+            [role="navigation"],
+            [role="tablist"] {
+              background-color: rgba(255, 255, 255, 0.75) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
+            }
+
+            /* Modal/Dialog backgrounds */
+            [role="dialog"],
+            [data-radix-dialog-content],
+            .modal,
+            .dialog {
+              background-color: rgba(255, 255, 255, 0.85) !important;
+              backdrop-filter: blur(15px) !important;
+              -webkit-backdrop-filter: blur(15px) !important;
+            }
+
+            /* Dropdown menus */
             [role="menu"],
             [data-radix-dropdown-content],
             [data-radix-select-content],
             .dropdown-content {
-              background-color: rgba(255, 255, 255, 0.90) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
+              background-color: rgba(255, 255, 255, 0.85) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
             }
 
-            /* Popover content - semi-transparent */
+            /* Popover content */
             [data-radix-popover-content],
             .popover-content {
-              background-color: rgba(255, 255, 255, 0.90) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
+              background-color: rgba(255, 255, 255, 0.85) !important;
+              backdrop-filter: blur(12px) !important;
+              -webkit-backdrop-filter: blur(12px) !important;
             }
 
-            /* Input fields - keep readable but slightly transparent */
+            /* Input fields */
             input[type="text"],
             input[type="email"],
             input[type="number"],
@@ -252,17 +266,27 @@ export default function Layout({ children, currentPageName }) {
             input[type="tel"],
             textarea,
             select {
-              background-color: rgba(255, 255, 255, 0.80) !important;
-              backdrop-filter: blur(5px) !important;
-              -webkit-backdrop-filter: blur(5px) !important;
+              background-color: rgba(255, 255, 255, 0.70) !important;
+              backdrop-filter: blur(8px) !important;
+              -webkit-backdrop-filter: blur(8px) !important;
             }
 
-            /* Header areas with white/grey backgrounds */
-            header[class*="bg-white"],
-            .header[class*="bg-white"] {
-              background-color: rgba(255, 255, 255, 0.85) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
+            /* EXCEPTIONS - Keep these fully opaque */
+            .bg-black,
+            .bg-slate-900,
+            .bg-slate-800,
+            .bg-gray-900,
+            .bg-gray-800,
+            [class*="bg-black"],
+            [class*="gradient"] {
+              /* Keep these solid - don't make transparent */
+            }
+
+            /* Transparent backgrounds stay transparent */
+            .bg-transparent,
+            [class*="bg-transparent"] {
+              background-color: transparent !important;
+              backdrop-filter: none !important;
             }
 
             /* Headings - allow hierarchy but keep controlled */
@@ -370,19 +394,6 @@ export default function Layout({ children, currentPageName }) {
               --border: 40 3% 30%; /* Lighter border for dark theme */
               --input: 40 3% 30%;
               --ring: 14 83% 58%;
-            }
-
-            /* --- White content pane styling --- */
-            .content-pane {
-                background-color: rgba(255, 255, 255, 0.85) !important;
-                backdrop-filter: blur(10px) !important;
-                -webkit-backdrop-filter: blur(10px) !important;
-                color: #111827;
-                border-top-left-radius: 2rem;
-                border-top-right-radius: 2rem;
-                margin-top: -1.25rem;
-                position: relative;
-                z-index: 10;
             }
 
             /* OPTIMIZED BACKGROUND IMAGE - Faster Loading */
