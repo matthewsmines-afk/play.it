@@ -1,35 +1,34 @@
-
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from 'lucide-react';
-import { createPageUrl } from '@/utils';
-import ChatSystem from '../components/chat/ChatSystem';
+import { ArrowLeft } from "lucide-react";
+import { createPageUrl } from "@/utils";
+import ChatSystem from "../components/chat/ChatSystem";
 
 export default function Chat() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* FIXED: Clean white header */}
-      <div className="p-4 md:p-6 bg-white border-b border-slate-200">
-        <div className="flex items-center gap-4 mb-6">
+    <div className="min-h-screen bg-transparent flex flex-col">
+      {/* Header with semi-transparent background */}
+      <div className="p-4 bg-white/95 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-10">
+        <div className="flex items-center gap-3">
           <Button 
-            variant="outline" 
+            variant="ghost" 
             size="icon" 
-            onClick={() => navigate(createPageUrl('Dashboard'))}
+            onClick={() => navigate(createPageUrl("Dashboard"))}
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-slate-900">Chat</h1>
-            <p className="text-sm text-slate-600">Communicate with coaches and team members</p>
+            <h1 className="text-xl font-bold text-slate-900">Messages</h1>
+            <p className="text-xs text-slate-600">Your conversations</p>
           </div>
         </div>
       </div>
-      
-      {/* Content area */}
-      <div className="p-4">
+
+      {/* Chat content */}
+      <div className="flex-1">
         <ChatSystem />
       </div>
     </div>

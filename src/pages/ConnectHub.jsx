@@ -6,10 +6,12 @@ import { Player } from '@/entities/Player';
 import { User } from '@/entities/User';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, ArrowLeft } from 'lucide-react';
+import { Card } from '@/components/ui/card'; // Added Card import
+import { Plus, ArrowLeft, Network } from 'lucide-react'; // Added Network import
 import { AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { toast } from 'sonner'; // Added toast import
 
 import FilterBar from '../components/connect-hub/FilterBar';
 import PostCard from '../components/connect-hub/PostCard';
@@ -60,6 +62,7 @@ export default function ConnectHub() {
 
     } catch (error) {
       console.error('Error loading Connect Hub data:', error);
+      toast.error('Failed to load Connect Hub data.');
     }
     setIsLoading(false);
   };
@@ -97,9 +100,10 @@ export default function ConnectHub() {
       await ConnectPost.create(postData);
       setShowCreateModal(false);
       loadData();
+      toast.success('Post created successfully!');
     } catch (error) {
       console.error('Error creating post:', error);
-      alert('Failed to create post. Please try again.');
+      toast.error('Failed to create post. Please try again.');
     }
   };
 
@@ -108,9 +112,10 @@ export default function ConnectHub() {
       await ConnectPost.update(postId, postData);
       setEditingPost(null);
       loadData();
+      toast.success('Post updated successfully!');
     } catch (error) {
       console.error('Error updating post:', error);
-      alert('Failed to update post. Please try again.');
+      toast.error('Failed to update post. Please try again.');
     }
   };
 
@@ -120,9 +125,10 @@ export default function ConnectHub() {
     try {
       await ConnectPost.delete(postId);
       loadData();
+      toast.success('Post deleted successfully!');
     } catch (error) {
       console.error('Error deleting post:', error);
-      alert('Failed to delete post. Please try again.');
+      toast.error('Failed to delete post. Please try again.');
     }
   };
 
@@ -130,9 +136,10 @@ export default function ConnectHub() {
     try {
       await ConnectPost.update(postId, { is_active: false });
       loadData();
+      toast.success('Post marked as fulfilled!');
     } catch (error) {
       console.error('Error marking post as fulfilled:', error);
-      alert('Failed to mark post as fulfilled. Please try again.');
+      toast.error('Failed to mark post as fulfilled. Please try again.');
     }
   };
 
@@ -143,43 +150,47 @@ export default function ConnectHub() {
         created_date: new Date().toISOString() // Refresh the created date
       });
       loadData();
+      toast.success('Post renewed successfully!');
     } catch (error) {
       console.error('Error renewing post:', error);
-      alert('Failed to renew post. Please try again.');
+      toast.error('Failed to renew post. Please try again.');
     }
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#2D2C29" }}>
-      {/* FIXED: Header with white text */}
-      <div className="p-4 md:p-6">
-        <div className="flex items-center gap-3 mb-6">
-          <Button 
-            variant="outline" 
-            size="icon" 
-            onClick={() => navigate(createPageUrl('Dashboard'))}
-            className="h-11 w-11 bg-white/10 border-white/20 text-white hover:bg-white/20"
-          >
-            <ArrowLeft className="w-5 h-5" />
-          </Button>
-          <div className="flex-1">
-            <h1 className="text-2xl md:text-3xl font-bold text-white">Connect Hub</h1>
-            <p className="text-sm text-white/70">Find players, teams, and opportunities</p>
+    <div className="min-h-screen bg-transparent">
+      {/* Header with semi-transparent background */}
+      <div className="p-4 sm:p-6 bg-white/95 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="icon" onClick={() => navigate(createPageUrl("Dashboard"))}>
+                <ArrowLeft className="w-5 h-5" />
+              </Button>
+              <div>
+                <h1 className="text-2xl font-semibold text-slate-900 flex items-center gap-2">
+                  <Network className="w-6 h-6" />
+                  Connect Hub
+                </h1>
+                <p className="text-sm text-slate-600 mt-1">Find players, teams, and opportunities</p>
+              </div>
+            </div>
+            {currentUser && (
+              <Button
+                onClick={() => setShowCreateModal(true)}
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Create Post
+              </Button>
+            )}
           </div>
-          <Button 
-            onClick={() => setShowCreateModal(true)}
-            className="bg-white text-slate-900 hover:bg-white/90 gap-2 font-semibold"
-          >
-            <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Create Post</span>
-          </Button>
         </div>
       </div>
 
-      {/* White content area */}
-      <div className="bg-white rounded-t-3xl -mt-2 relative z-10">
-        <div className="p-4 md:p-6 space-y-6">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      {/* Content area - ensure cards have semi-transparent backgrounds */}
+      <div className="p-4 sm:p-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="discover">Discover</TabsTrigger>
               <TabsTrigger value="my-posts">
@@ -210,6 +221,7 @@ export default function ConnectHub() {
                         onDelete={handleDeletePost}
                         onMarkAsFulfilled={handleMarkAsFulfilled}
                         showActions={false} // No actions on discover tab
+                        className="bg-white/95 backdrop-blur-sm" // Applied semi-transparent background
                       />
                     ))}
                   </AnimatePresence>
@@ -243,6 +255,7 @@ export default function ConnectHub() {
                         onMarkAsFulfilled={handleMarkAsFulfilled}
                         onRenew={handleRenewPost}
                         showActions={true} // Show actions on my posts tab
+                        className="bg-white/95 backdrop-blur-sm" // Applied semi-transparent background
                       />
                     ))}
                   </AnimatePresence>
@@ -272,7 +285,6 @@ export default function ConnectHub() {
               players={players}
             />
           )}
-        </div>
       </div>
     </div>
   );

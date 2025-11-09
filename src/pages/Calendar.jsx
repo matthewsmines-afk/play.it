@@ -8,7 +8,7 @@ import { RSVP } from '@/entities/RSVP';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar as CalendarIcon, Clock, MapPin, Users, Trophy, ArrowLeft, CheckCircle, XCircle, HelpCircle } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, MapPin, Users, Trophy, ArrowLeft, CheckCircle, XCircle, HelpCircle, Dumbbell, PartyPopper } from 'lucide-react';
 import { format, isSameDay, startOfToday } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
@@ -44,7 +44,7 @@ const safeFormatTime = (dateString) => {
 };
 
 const eventTypeIcons = {
-  training: Users,
+  training: Dumbbell, // Changed from Users to Dumbbell
   match: Trophy,
   tournament: Trophy,
   meeting: Users,
@@ -223,28 +223,30 @@ export default function Calendar() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50">
-            <div className="p-4 md:p-6 bg-white border-b border-slate-200">
-                <div className="flex items-center gap-3 mb-6">
+        <div className="min-h-screen bg-transparent">
+            {/* Header with semi-transparent background */}
+            <div className="p-4 bg-white/95 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-10">
+                <div className="flex items-center gap-3">
                     <Button 
-                        variant="outline" 
+                        variant="ghost" 
                         size="icon" 
-                        onClick={() => navigate(createPageUrl('Dashboard'))}
+                        onClick={() => navigate(createPageUrl("Dashboard"))}
                     >
                         <ArrowLeft className="w-5 h-5" />
                     </Button>
-                    <div className="flex-1">
-                        <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Calendar</h1>
-                        <p className="text-sm text-slate-600">View all upcoming events across your teams</p>
+                    <div>
+                        <h1 className="text-xl font-bold text-slate-900">Calendar</h1>
+                        <p className="text-xs text-slate-600">Upcoming events and matches</p>
                     </div>
                 </div>
             </div>
 
-            <div className="p-4 md:p-6 space-y-6">
+            {/* Content with semi-transparent cards */}
+            <div className="p-4 space-y-4">
                 {isLoading ? (
                     <p>Loading calendar...</p>
                 ) : events.length === 0 ? (
-                    <Card>
+                    <Card className="bg-white/95 backdrop-blur-sm">
                         <CardContent className="text-center py-12">
                             <CalendarIcon className="w-16 h-16 mx-auto text-slate-300 mb-4" />
                             <h3 className="text-lg font-semibold text-slate-600 mb-2">No events found</h3>
@@ -272,6 +274,9 @@ export default function Calendar() {
                                             team={team}
                                             existingRSVP={existingRSVP}
                                             onRSVPUpdate={() => window.location.reload()}
+                                            // QuickRSVPCard is a custom component, assuming it handles its own Card styling internally.
+                                            // If it accepts a className prop for its root Card, it would be passed here.
+                                            // For this specific change, we only apply to explicit Card components in *this* file.
                                         />
                                     );
                                 }
@@ -280,7 +285,7 @@ export default function Calendar() {
                             // Default event card for coaches
                             const EventIcon = eventTypeIcons[event.event_type] || Users;
                             return (
-                                <Card key={event.id} onClick={() => handleEventClick(event)} className="hover:shadow-md transition-shadow cursor-pointer">
+                                <Card key={event.id} onClick={() => handleEventClick(event)} className="bg-white/95 backdrop-blur-sm hover:shadow-md transition-shadow cursor-pointer">
                                     <CardContent className="p-4 flex gap-4 items-start">
                                         <div className="p-2 bg-blue-50 rounded-lg mt-1">
                                             <EventIcon className="w-5 h-5 text-blue-600" />
