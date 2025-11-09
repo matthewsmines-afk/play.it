@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Player } from '@/entities/Player';
 import { Event } from '@/entities/Event';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   ArrowLeft,
   Settings,
@@ -13,7 +12,6 @@ import {
   Calendar,
   BarChart3,
   MessageSquare,
-  Plus,
   UserPlus,
   Trophy,
   Target
@@ -26,6 +24,64 @@ import StatsCenter from './StatsCenter';
 import TeamChat from './TeamChat';
 import EditTeamForm from './EditTeamForm';
 import JoinRequestsList from './JoinRequestsList';
+
+const TeamDetailsTabs = ({ activeTab, onTabChange }) => {
+  const tabs = [
+    { id: "events", label: "Events", icon: Calendar },
+    { id: "roster", label: "Squad", icon: Users },
+    { id: "stats", label: "Stats", icon: BarChart3 },
+    { id: "chat", label: "Chat", icon: MessageSquare },
+  ];
+
+  return (
+    <div className="bg-white/60 backdrop-blur-xl border border-slate-200/50 rounded-lg p-1.5">
+      <div className="grid w-full grid-cols-4 gap-1.5">
+        {tabs.map((tab) => {
+          const Icon = tab.icon;
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => onTabChange(tab.id)}
+              className={`
+                flex flex-col items-center justify-center gap-1 p-3 rounded-md
+                transition-all duration-200
+                ${isActive
+                  ? 'bg-slate-900 text-white'
+                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+                }
+              `}
+            >
+              <Icon className={`w-5 h-5 flex-shrink-0 ${isActive ? 'text-white' : ''}`} />
+              <span className={`text-xs whitespace-nowrap ${isActive ? 'text-white font-semibold' : 'font-normal'}`}>
+                {tab.label}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const QuickStat = ({ title, value, icon: Icon, color }) => {
+  const colorClasses = {
+    blue: 'text-blue-600',
+    green: 'text-green-600',
+    purple: 'text-purple-600',
+    orange: 'text-orange-600'
+  };
+
+  return (
+    <Card className="bg-white/60 backdrop-blur-xl border-slate-200/50">
+      <CardContent className="p-4 text-center">
+        <Icon className={`w-6 h-6 mx-auto mb-2 ${colorClasses[color]}`} />
+        <p className="text-2xl font-bold text-slate-900">{value}</p>
+        <p className="text-sm text-slate-600">{title}</p>
+      </CardContent>
+    </Card>
+  );
+};
 
 export default function TeamDetails({ team, players = [], onBack, onUpdate }) {
   const navigate = useNavigate();
@@ -85,10 +141,10 @@ export default function TeamDetails({ team, players = [], onBack, onUpdate }) {
   if (isEditing) {
     return (
       <div className="min-h-screen bg-transparent">
-        <div className="p-4 sm:p-6 bg-white/60 backdrop-blur-xl border-b border-slate-200/50 sticky top-0 z-10">
+        <div className="p-4 sm:p-6 bg-white/95 backdrop-blur-sm border-b border-slate-200">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-4">
-              <Button variant="outline" size="icon" onClick={() => setIsEditing(false)}>
+              <Button variant="ghost" size="icon" onClick={() => setIsEditing(false)}>
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <h1 className="text-2xl font-bold text-slate-900">Edit Team</h1>
@@ -111,140 +167,128 @@ export default function TeamDetails({ team, players = [], onBack, onUpdate }) {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-transparent flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900 mx-auto mb-4"></div>
-          <p className="text-sm text-slate-600">Loading team details...</p>
-        </div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900"></div>
       </div>
     );
   }
 
+  const matchesCount = (teamEvents || []).filter(e => e.event_type === 'match').length;
+  const winsCount = (teamEvents || []).filter(e => e.match_status === 'completed' && e.our_score > e.opponent_score).length;
+
   return (
-    <div className="min-h-screen bg-transparent">
+    <div className="min-h-screen bg-transparent relative">
       {/* Header */}
-      <div className="p-4 sm:p-6 bg-white/60 backdrop-blur-xl border-b border-slate-200/50 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between gap-4 mb-4">
-            <div className="flex items-center gap-3 min-w-0 flex-1">
-              <Button variant="outline" size="icon" onClick={onBack} className="flex-shrink-0">
+      <div className="p-4 sm:p-6 bg-white/95 backdrop-blur-sm border-b border-slate-200 relative z-10">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+            <div className="flex items-center gap-3 min-w-0">
+              <Button variant="ghost" size="icon" onClick={onBack}>
                 <ArrowLeft className="w-5 h-5" />
               </Button>
-              <div className="min-w-0 flex-1">
-                <h1 className="text-2xl font-bold text-slate-900 truncate">{team.name}</h1>
-                <div className="flex items-center gap-2 mt-2 flex-wrap">
-                  <Badge variant="secondary" className="text-xs">{team.age_group}</Badge>
-                  <Badge variant="outline" className="text-xs">{team.sport}</Badge>
-                  <Badge variant="outline" className="text-xs">{team.default_match_format}</Badge>
-                </div>
+              <div className="min-w-0">
+                <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900">{team.name}</h1>
+                <p className="text-sm text-slate-600 font-light mt-2">
+                  Team management and performance tracking
+                </p>
               </div>
             </div>
-            <Button onClick={() => setIsEditing(true)} variant="outline" size="sm" className="flex-shrink-0">
-              <Settings className="w-4 h-4 sm:mr-2" />
-              <span className="hidden sm:inline">Edit</span>
+            <Button 
+              onClick={() => setIsEditing(true)} 
+              className="px-6 py-3 text-sm shadow-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0"
+            >
+              <Settings className="w-4 h-4 mr-2" />
+              Edit Team
             </Button>
           </div>
-        </div>
-      </div>
 
-      <div className="p-4 sm:p-6">
-        <div className="max-w-7xl mx-auto space-y-6">
-          {/* Join Requests */}
-          <JoinRequestsList teamId={team.id} />
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <Card className="bg-white/60 backdrop-blur-xl border-slate-200/50">
-              <CardContent className="p-4 text-center">
-                <Users className="w-6 h-6 mx-auto text-blue-600 mb-2" />
-                <p className="text-2xl font-bold text-slate-900">{teamPlayers.length}</p>
-                <p className="text-sm text-slate-600">Players</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-white/60 backdrop-blur-xl border-slate-200/50">
-              <CardContent className="p-4 text-center">
-                <Calendar className="w-6 h-6 mx-auto text-green-600 mb-2" />
-                <p className="text-2xl font-bold text-slate-900">{teamEvents.length}</p>
-                <p className="text-sm text-slate-600">Events</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-white/60 backdrop-blur-xl border-slate-200/50">
-              <CardContent className="p-4 text-center">
-                <Target className="w-6 h-6 mx-auto text-purple-600 mb-2" />
-                <p className="text-2xl font-bold text-slate-900">
-                  {(teamEvents || []).filter(e => e.event_type === 'match').length}
-                </p>
-                <p className="text-sm text-slate-600">Matches</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-white/60 backdrop-blur-xl border-slate-200/50">
-              <CardContent className="p-4 text-center">
-                <Trophy className="w-6 h-6 mx-auto text-orange-600 mb-2" />
-                <p className="text-2xl font-bold text-slate-900">
-                  {(teamEvents || []).filter(e => e.match_status === 'completed' && e.our_score > e.opponent_score).length}
-                </p>
-                <p className="text-sm text-slate-600">Wins</p>
-              </CardContent>
-            </Card>
+          {/* Badges */}
+          <div className="flex items-center gap-2 flex-wrap mb-6">
+            <Badge variant="secondary" className="text-xs">{team.age_group}</Badge>
+            <Badge variant="outline" className="text-xs">{team.sport}</Badge>
+            <Badge variant="outline" className="text-xs">{team.default_match_format}</Badge>
           </div>
 
           {/* Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-4 bg-white/60 backdrop-blur-xl">
-              <TabsTrigger value="roster" className="flex items-center gap-2 text-xs sm:text-sm">
-                <Users className="w-4 h-4" />
-                <span className="hidden sm:inline">Squad</span>
-              </TabsTrigger>
-              <TabsTrigger value="events" className="flex items-center gap-2 text-xs sm:text-sm">
-                <Calendar className="w-4 h-4" />
-                <span className="hidden sm:inline">Events</span>
-              </TabsTrigger>
-              <TabsTrigger value="stats" className="flex items-center gap-2 text-xs sm:text-sm">
-                <BarChart3 className="w-4 h-4" />
-                <span className="hidden sm:inline">Stats</span>
-              </TabsTrigger>
-              <TabsTrigger value="chat" className="flex items-center gap-2 text-xs sm:text-sm">
-                <MessageSquare className="w-4 h-4" />
-                <span className="hidden sm:inline">Chat</span>
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="events" className="mt-6">
-              <TeamEvents 
-                team={team} 
-                players={teamPlayers}
-                events={teamEvents}
-                onUpdate={() => window.location.reload()}
-              />
-            </TabsContent>
-
-            <TabsContent value="roster" className="mt-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-lg font-bold text-slate-900">Team Roster</h2>
-                <Button onClick={handleAddPlayer} size="sm" className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white">
-                  <UserPlus className="w-4 h-4 mr-2" />
-                  Add Player
-                </Button>
-              </div>
-              <TeamRoster 
-                team={team} 
-                players={teamPlayers}
-                onUpdate={() => window.location.reload()}
-              />
-            </TabsContent>
-
-            <TabsContent value="stats" className="mt-6">
-              <StatsCenter 
-                team={team} 
-                players={teamPlayers}
-                events={teamEvents.filter(e => e.event_type === 'match')}
-              />
-            </TabsContent>
-
-            <TabsContent value="chat" className="mt-6">
-              <TeamChat team={team} />
-            </TabsContent>
-          </Tabs>
+          <TeamDetailsTabs activeTab={activeTab} onTabChange={setActiveTab} />
         </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-4 sm:p-6 space-y-6 sm:space-y-8 w-full max-w-7xl mx-auto relative z-10">
+        {/* Join Requests - only show in roster tab */}
+        {activeTab === 'roster' && (
+          <JoinRequestsList teamId={team.id} />
+        )}
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <QuickStat
+            title="Players"
+            value={teamPlayers.length}
+            icon={Users}
+            color="blue"
+          />
+          <QuickStat
+            title="Events"
+            value={teamEvents.length}
+            icon={Calendar}
+            color="green"
+          />
+          <QuickStat
+            title="Matches"
+            value={matchesCount}
+            icon={Target}
+            color="purple"
+          />
+          <QuickStat
+            title="Wins"
+            value={winsCount}
+            icon={Trophy}
+            color="orange"
+          />
+        </div>
+
+        {/* Tab Content */}
+        {activeTab === 'events' && (
+          <TeamEvents 
+            team={team} 
+            players={teamPlayers}
+            events={teamEvents}
+            onUpdate={() => window.location.reload()}
+          />
+        )}
+
+        {activeTab === 'roster' && (
+          <div className="space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-slate-900">Team Roster</h2>
+              <Button 
+                onClick={handleAddPlayer} 
+                className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white"
+              >
+                <UserPlus className="w-4 h-4 mr-2" />
+                Add Player
+              </Button>
+            </div>
+            <TeamRoster 
+              team={team} 
+              players={teamPlayers}
+              onUpdate={() => window.location.reload()}
+            />
+          </div>
+        )}
+
+        {activeTab === 'stats' && (
+          <StatsCenter 
+            team={team} 
+            players={teamPlayers}
+            events={teamEvents.filter(e => e.event_type === 'match')}
+          />
+        )}
+
+        {activeTab === 'chat' && (
+          <TeamChat team={team} />
+        )}
       </div>
     </div>
   );
