@@ -1,57 +1,59 @@
-import Dashboard from './pages/Dashboard';
-import ParentDashboard from './pages/ParentDashboard';
-import LiveMatch from './pages/LiveMatch';
-import EditPlayer from './pages/EditPlayer';
-import CreateEvent from './pages/CreateEvent';
-import Players from './pages/Players';
-import Calendar from './pages/Calendar';
-import PlayerProfile from './pages/PlayerProfile';
-import Clubs from './pages/Clubs';
-import FontPreview from './pages/FontPreview';
-import Chat from './pages/Chat';
-import Conversation from './pages/Conversation';
-import LiveTraining from './pages/LiveTraining';
-import SquadTactics from './pages/SquadTactics';
-import MatchReport from './pages/MatchReport';
-import ConnectHub from './pages/ConnectHub';
-import Onboarding from './pages/Onboarding';
-import CreateTeam from './pages/CreateTeam';
 import AddMyChild from './pages/AddMyChild';
+import Calendar from './pages/Calendar';
+import Chat from './pages/Chat';
+import Clubs from './pages/Clubs';
+import ConnectHub from './pages/ConnectHub';
+import Conversation from './pages/Conversation';
+import CreateEvent from './pages/CreateEvent';
+import CreateTeam from './pages/CreateTeam';
+import Dashboard from './pages/Dashboard';
+import EditPlayer from './pages/EditPlayer';
 import FindTeam from './pages/FindTeam';
+import FontPreview from './pages/FontPreview';
+import Home from './pages/Home';
+import LiveMatch from './pages/LiveMatch';
+import LiveTraining from './pages/LiveTraining';
+import MatchHistory from './pages/MatchHistory';
+import MatchReport from './pages/MatchReport';
 import MyChildren from './pages/MyChildren';
 import MyRequests from './pages/MyRequests';
-import MatchHistory from './pages/MatchHistory';
-import Layout from './Layout.jsx';
+import Onboarding from './pages/Onboarding';
+import ParentDashboard from './pages/ParentDashboard';
+import PlayerProfile from './pages/PlayerProfile';
+import Players from './pages/Players';
+import SquadTactics from './pages/SquadTactics';
+import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "Dashboard": Dashboard,
-    "ParentDashboard": ParentDashboard,
-    "LiveMatch": LiveMatch,
-    "EditPlayer": EditPlayer,
-    "CreateEvent": CreateEvent,
-    "Players": Players,
-    "Calendar": Calendar,
-    "PlayerProfile": PlayerProfile,
-    "Clubs": Clubs,
-    "FontPreview": FontPreview,
-    "Chat": Chat,
-    "Conversation": Conversation,
-    "LiveTraining": LiveTraining,
-    "SquadTactics": SquadTactics,
-    "MatchReport": MatchReport,
-    "ConnectHub": ConnectHub,
-    "Onboarding": Onboarding,
-    "CreateTeam": CreateTeam,
     "AddMyChild": AddMyChild,
+    "Calendar": Calendar,
+    "Chat": Chat,
+    "Clubs": Clubs,
+    "ConnectHub": ConnectHub,
+    "Conversation": Conversation,
+    "CreateEvent": CreateEvent,
+    "CreateTeam": CreateTeam,
+    "Dashboard": Dashboard,
+    "EditPlayer": EditPlayer,
     "FindTeam": FindTeam,
+    "FontPreview": FontPreview,
+    "Home": Home,
+    "LiveMatch": LiveMatch,
+    "LiveTraining": LiveTraining,
+    "MatchHistory": MatchHistory,
+    "MatchReport": MatchReport,
     "MyChildren": MyChildren,
     "MyRequests": MyRequests,
-    "MatchHistory": MatchHistory,
+    "Onboarding": Onboarding,
+    "ParentDashboard": ParentDashboard,
+    "PlayerProfile": PlayerProfile,
+    "Players": Players,
+    "SquadTactics": SquadTactics,
 }
 
 export const pagesConfig = {
     mainPage: "Dashboard",
     Pages: PAGES,
-    Layout: Layout,
+    Layout: __Layout,
 };

@@ -29,7 +29,7 @@ import RoleSwitcher from "@/components/shared/RoleSwitcher";
 
 const navigationItems = [
   { title: "Dashboard", url: createPageUrl("Dashboard"), icon: Home },
-  { title: "C-Hub", url: createPageUrl("ConnectHub"), icon: Users },
+  { title: "Market", url: createPageUrl("ConnectHub"), icon: Users },
   { title: "Clubs", url: createPageUrl("Clubs"), icon: Building2 },
   { title: "Players", url: createPageUrl("Players"), icon: Users },
   { title: "Calendar", url: createPageUrl("Calendar"), icon: Calendar },

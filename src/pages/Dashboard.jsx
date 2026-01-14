@@ -42,7 +42,7 @@ const CoachDashboardTabs = ({ activeTab, onTabChange }) => {
   const tabs = [
     { id: "my_teams", label: "My Teams", icon: Users },
     { id: "messages", label: "Messages", icon: MessageSquare, path: "Chat" },
-    { id: "connect_hub", label: "C-Hub", icon: Network, path: "ConnectHub" },
+    { id: "connect_hub", label: "Market", icon: Network, path: "ConnectHub" },
     { id: "my_club", label: "My Club", icon: Building2, path: "Clubs" },
   ];
 
