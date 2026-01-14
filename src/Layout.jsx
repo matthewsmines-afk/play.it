@@ -289,6 +289,22 @@ export default function Layout({ children, currentPageName }) {
               -webkit-backdrop-filter: blur(12px) !important;
             }
 
+            /* Team cards with dark backgrounds need white text */
+            .team-card .text-slate-800,
+            .team-card .text-slate-600,
+            .team-card .text-slate-500 {
+              color: #ffffff !important;
+            }
+
+            .team-card [class*="text-slate"] {
+              color: #ffffff !important;
+            }
+
+            .team-card {
+              background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(51, 65, 85, 0.95)) !important;
+              backdrop-filter: blur(12px) !important;
+            }
+
             /* Card headers specifically */
             [class*="CardHeader"],
             [class*="card-header"] {

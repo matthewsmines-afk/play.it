@@ -302,7 +302,7 @@ const CoachDashboard = ({ user }) => {
               <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900">
                 Coach Dashboard
               </h1>
-              <p className="text-sm text-slate-600 font-light mt-2">
+              <p className="text-sm text-slate-700 font-normal mt-2">
                 Your central command center for teams and clubs.
               </p>
             </div>
