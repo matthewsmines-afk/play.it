@@ -463,7 +463,7 @@ export default function Layout({ children, currentPageName }) {
           `}
         </style>
 
-        <parameter name="replace">              <SidebarProvider>
+        <SidebarProvider>
           <div className="flex w-full min-h-screen bg-white relative">
             {/* OPTIMIZED Background Image with CSS class */}
             <div className="pitch-background" />
