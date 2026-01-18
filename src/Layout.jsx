@@ -284,7 +284,7 @@ export default function Layout({ children, currentPageName }) {
             [class*="Card"],
             .card,
             [data-card] {
-              background-color: rgba(255, 255, 255, 0.65) !important;
+              background-color: rgba(255, 255, 255, 0.45) !important;
               backdrop-filter: blur(12px) !important;
               -webkit-backdrop-filter: blur(12px) !important;
             }
@@ -309,7 +309,7 @@ export default function Layout({ children, currentPageName }) {
             [style*="background-color: white"]:not(.sidebar *),
             [style*="background-color: #fff"]:not(.sidebar *),
             [style*="background-color: #ffffff"]:not(.sidebar *) {
-              background-color: rgba(255, 255, 255, 0.60) !important;
+              background-color: rgba(255, 255, 255, 0.40) !important;
               backdrop-filter: blur(12px) !important;
               -webkit-backdrop-filter: blur(12px) !important;
             }
@@ -323,7 +323,7 @@ export default function Layout({ children, currentPageName }) {
             [class*="bg-gray-100"]:not(.sidebar *),
             [class*="bg-slate-50"]:not(.sidebar *),
             [class*="bg-slate-100"]:not(.sidebar *) {
-              background-color: rgba(248, 250, 252, 0.50) !important;
+              background-color: rgba(248, 250, 252, 0.30) !important;
               backdrop-filter: blur(10px) !important;
               -webkit-backdrop-filter: blur(10px) !important;
             }
@@ -340,7 +340,7 @@ export default function Layout({ children, currentPageName }) {
             [data-radix-dialog-content],
             .modal,
             .dialog {
-              background-color: rgba(255, 255, 255, 0.75) !important;
+              background-color: rgba(255, 255, 255, 0.55) !important;
               backdrop-filter: blur(15px) !important;
               -webkit-backdrop-filter: blur(15px) !important;
             }
@@ -350,7 +350,7 @@ export default function Layout({ children, currentPageName }) {
             [data-radix-dropdown-content],
             [data-radix-select-content],
             .dropdown-content {
-              background-color: rgba(255, 255, 255, 0.80) !important;
+              background-color: rgba(255, 255, 255, 0.60) !important;
               backdrop-filter: blur(12px) !important;
               -webkit-backdrop-filter: blur(12px) !important;
             }
@@ -358,7 +358,7 @@ export default function Layout({ children, currentPageName }) {
             /* Popover content - semi-transparent */
             [data-radix-popover-content],
             .popover-content {
-              background-color: rgba(255, 255, 255, 0.80) !important;
+              background-color: rgba(255, 255, 255, 0.60) !important;
               backdrop-filter: blur(12px) !important;
               -webkit-backdrop-filter: blur(12px) !important;
             }
@@ -371,7 +371,7 @@ export default function Layout({ children, currentPageName }) {
             input[type="tel"],
             textarea,
             select {
-              background-color: rgba(255, 255, 255, 0.70) !important;
+              background-color: rgba(255, 255, 255, 0.50) !important;
               backdrop-filter: blur(8px) !important;
               -webkit-backdrop-filter: blur(8px) !important;
             }
@@ -379,7 +379,7 @@ export default function Layout({ children, currentPageName }) {
             /* Header areas with white/grey backgrounds */
             header[class*="bg-white"]:not([style*="background-color: #2D2C29"]),
             .header[class*="bg-white"]:not([style*="background-color: #2D2C29"]) {
-              background-color: rgba(255, 255, 255, 0.65) !important;
+              background-color: rgba(255, 255, 255, 0.45) !important;
               backdrop-filter: blur(12px) !important;
               -webkit-backdrop-filter: blur(12px) !important;
             }
