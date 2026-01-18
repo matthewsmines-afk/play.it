@@ -458,18 +458,7 @@ export default function Layout({ children, currentPageName }) {
 
             /* OPTIMIZED BACKGROUND IMAGE - Faster Loading */
             .pitch-background {
-              position: fixed;
-              inset: 0;
-              z-index: 0;
-              pointer-events: none;
-              background-image: url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68a9c1edbf77d9233404b226/2f17c4a5e_AdobeStock_865516778.jpg');
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;
-              opacity: 0.40;
-              will-change: transform;
-              transform: translateZ(0);
-              image-rendering: -webkit-optimize-contrast;
+              display: none;
             }
           `}
         </style>
