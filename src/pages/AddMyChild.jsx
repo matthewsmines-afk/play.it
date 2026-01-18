@@ -150,10 +150,10 @@ export default function AddMyChild() {
 
   if (isLoading) {
     return (
-      <div className="p-4 md:p-6 text-center min-h-screen flex items-center justify-center bg-[#2D2C29]">
+      <div className="p-4 md:p-6 text-center min-h-screen flex items-center justify-center bg-white">
         <div className="flex flex-col items-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-white">Loading...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-black mx-auto mb-4"></div>
+          <p className="text-black">Loading...</p>
         </div>
       </div>
     );
@@ -184,65 +184,71 @@ export default function AddMyChild() {
   const currentBasicPosition = ADVANCED_TO_BASIC_MAP[formData.main_position] || '';
   
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#2D2C29' }}>
-      {/* Dark Header */}
-      <div className="text-white pt-6 pb-4">
-        <div className="mx-4">
-          <div className="flex items-center gap-4 mb-4">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={() => navigate(createPageUrl('Dashboard'))}
-              className="text-white hover:bg-white/10"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </Button>
-          </div>
-          <div className="rounded-2xl p-6" style={{ backgroundColor: '#3A3936' }}>
-            <h1 className="text-2xl font-semibold text-white mb-2">Add My Child</h1>
-            <p className="text-gray-400">Create a profile for your child to find and join teams</p>
+    <div className="min-h-screen bg-white md:bg-transparent">
+      {/* Header */}
+      <div className="bg-white px-4 pt-6 pb-4 md:px-6 relative z-10">
+        <div className="flex items-center justify-between mb-8">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => navigate(createPageUrl('Dashboard'))}
+            className="text-black hover:bg-gray-100"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Button>
+          <div className="relative">
+            <span className="relative flex h-6 w-6">
+              <span className="absolute -right-0.5 -top-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-orange-500"></span>
+            </span>
           </div>
         </div>
+
+        <h1 className="text-4xl font-bold text-black leading-tight max-w-sm mb-2">
+          Hi {currentUser?.full_name?.split(' ')[0] || 'there'},
+          <br />
+          Add your child here.
+        </h1>
+        <p className="text-base text-gray-600 font-normal">Create a profile for your child to find and join teams</p>
       </div>
 
-      {/* White Content Area */}
-      <div className="bg-white min-h-screen rounded-t-3xl relative -mt-3 pb-24">
-        <div className="px-4 pt-8 pb-6">
-          <Card className="card-shadow">
+      {/* Content Area */}
+      <div className="relative z-10 pb-24">
+        <div className="px-4 pt-8 pb-6 md:px-6">
+          <Card className="card-shadow bg-white border-none rounded-xl">
             <CardContent className="p-6 md:p-8">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="space-y-6">
-                  <h3 style={{ color: '#374151' }} className="text-lg font-bold border-b pb-3">Basic Information</h3>
+                  <h3 className="text-lg font-bold text-black border-b pb-3">Basic Information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="first_name" style={{ color: '#374151' }} className="font-semibold text-sm">First Name *</Label>
+                      <Label htmlFor="first_name" className="font-semibold text-sm text-black">First Name *</Label>
                       <Input 
                         id="first_name" 
                         value={formData.first_name} 
                         onChange={(e) => handleInputChange('first_name', e.target.value)} 
                         required 
                         placeholder="Child's first name"
-                        className="bg-white text-slate-900 border-slate-200"
+                        className="bg-white text-black border-gray-300"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="last_name" style={{ color: '#374151' }} className="font-semibold text-sm">Last Name *</Label>
+                      <Label htmlFor="last_name" className="font-semibold text-sm text-black">Last Name *</Label>
                       <Input 
                         id="last_name" 
                         value={formData.last_name} 
                         onChange={(e) => handleInputChange('last_name', e.target.value)} 
                         required 
                         placeholder="Child's last name"
-                        className="bg-white text-slate-900 border-slate-200"
+                        className="bg-white text-black border-gray-300"
                       />
                     </div>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="date_of_birth" style={{ color: '#374151' }} className="font-semibold text-sm">
+                      <Label htmlFor="date_of_birth" className="font-semibold text-sm text-black">
                         Date of Birth *
-                        {playerAge !== null && <span className="text-slate-500 font-normal ml-2">(Age: {playerAge})</span>}
+                        {playerAge !== null && <span className="text-gray-600 font-normal ml-2">(Age: {playerAge})</span>}
                       </Label>
                       <Input 
                         id="date_of_birth" 
@@ -250,13 +256,13 @@ export default function AddMyChild() {
                         value={formData.date_of_birth} 
                         onChange={(e) => handleInputChange('date_of_birth', e.target.value)}
                         required
-                        className="bg-white text-slate-900 border-slate-200"
+                        className="bg-white text-black border-gray-300"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="preferred_foot" style={{ color: '#374151' }} className="font-semibold text-sm">Preferred Foot</Label>
+                      <Label htmlFor="preferred_foot" className="font-semibold text-sm text-black">Preferred Foot</Label>
                       <Select value={formData.preferred_foot} onValueChange={(value) => handleInputChange('preferred_foot', value)}>
-                        <SelectTrigger className="bg-white text-slate-900 border-slate-200">
+                        <SelectTrigger className="bg-white text-black border-gray-300">
                           <SelectValue placeholder="Select foot" />
                         </SelectTrigger>
                         <SelectContent className="bg-white">
@@ -271,17 +277,29 @@ export default function AddMyChild() {
                 </div>
 
                 <div className="space-y-4 pt-6 border-t">
-                  <Label style={{ color: '#374151' }} className="font-bold">Player Positions</Label>
-                  <div className="flex items-center gap-2 p-1 bg-slate-100 rounded-lg w-min">
-                    <Button type="button" onClick={() => setPositionMode('basic')} variant={positionMode === 'basic' ? 'default' : 'ghost'} className="h-9 px-4 text-sm">Basic</Button>
-                    <Button type="button" onClick={() => setPositionMode('advanced')} variant={positionMode === 'advanced' ? 'default' : 'ghost'} className="h-9 px-4 text-sm">Advanced</Button>
+                  <Label className="font-bold text-black">Player Positions</Label>
+                  <div className="flex items-center gap-2 p-1 bg-gray-100 rounded-lg w-min">
+                    <Button 
+                      type="button" 
+                      onClick={() => setPositionMode('basic')} 
+                      className={`h-9 px-4 text-sm ${positionMode === 'basic' ? 'bg-orange-500 text-white hover:bg-orange-600' : 'bg-transparent text-black hover:bg-gray-200'}`}
+                    >
+                      Basic
+                    </Button>
+                    <Button 
+                      type="button" 
+                      onClick={() => setPositionMode('advanced')} 
+                      className={`h-9 px-4 text-sm ${positionMode === 'advanced' ? 'bg-orange-500 text-white hover:bg-orange-600' : 'bg-transparent text-black hover:bg-gray-200'}`}
+                    >
+                      Advanced
+                    </Button>
                   </div>
 
                   {positionMode === 'basic' ? (
                     <div className="space-y-2">
-                      <Label htmlFor="basic_position" style={{ color: '#374151' }} className="font-semibold text-sm">Main Position *</Label>
+                      <Label htmlFor="basic_position" className="font-semibold text-sm text-black">Main Position *</Label>
                       <Select value={currentBasicPosition} onValueChange={handleBasicPositionChange} required>
-                        <SelectTrigger className="bg-white text-slate-900 border-slate-200">
+                        <SelectTrigger className="bg-white text-black border-gray-300">
                           <SelectValue placeholder="Select basic position" />
                         </SelectTrigger>
                         <SelectContent className="bg-white">
@@ -294,9 +312,9 @@ export default function AddMyChild() {
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="main_position" style={{ color: '#374151' }} className="font-semibold text-sm">Main Position *</Label>
+                        <Label htmlFor="main_position" className="font-semibold text-sm text-black">Main Position *</Label>
                         <Select value={formData.main_position} onValueChange={(value) => handleInputChange('main_position', value)} required>
-                          <SelectTrigger className="bg-white text-slate-900 border-slate-200">
+                          <SelectTrigger className="bg-white text-black border-gray-300">
                             <SelectValue placeholder="Select main position" />
                           </SelectTrigger>
                           <SelectContent className="bg-white">
@@ -328,13 +346,13 @@ export default function AddMyChild() {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="positions" style={{ color: '#374151' }} className="font-semibold text-sm">Secondary Positions</Label>
+                        <Label htmlFor="positions" className="font-semibold text-sm text-black">Secondary Positions</Label>
                         <MultiSelect 
                           options={groupedSecondaryPositions} 
                           selected={formData.positions} 
                           onChange={(positions) => handleInputChange('positions', positions)}
                           placeholder="Select secondary positions..."
-                          className="bg-white text-slate-900 border-slate-200"
+                          className="bg-white text-black border-gray-300"
                         />
                       </div>
                     </div>
@@ -342,37 +360,37 @@ export default function AddMyChild() {
                 </div>
                 
                 <div className="space-y-6">
-                  <h3 style={{ color: '#374151' }} className="text-lg font-bold border-b pb-3">Contact & Medical</h3>
+                  <h3 className="text-lg font-bold text-black border-b pb-3">Contact & Medical</h3>
                   <div className="space-y-2">
-                    <Label htmlFor="emergency_contact" style={{ color: '#374151' }} className="font-semibold text-sm">Emergency Contact Number</Label>
+                    <Label htmlFor="emergency_contact" className="font-semibold text-sm text-black">Emergency Contact Number</Label>
                     <Input 
                       id="emergency_contact" 
                       value={formData.emergency_contact} 
                       onChange={(e) => handleInputChange('emergency_contact', e.target.value)} 
                       placeholder="Your phone number for emergencies"
-                      className="bg-white text-slate-900 border-slate-200"
+                      className="bg-white text-black border-gray-300"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="medical_notes" style={{ color: '#374151' }} className="font-semibold text-sm">Medical Notes</Label>
+                    <Label htmlFor="medical_notes" className="font-semibold text-sm text-black">Medical Notes</Label>
                     <Input 
                       id="medical_notes" 
                       value={formData.medical_notes} 
                       onChange={(e) => handleInputChange('medical_notes', e.target.value)} 
                       placeholder="Any medical conditions, allergies, or important notes"
-                      className="bg-white text-slate-900 border-slate-200"
+                      className="bg-white text-black border-gray-300"
                     />
                   </div>
                 </div>
 
                 <div className="flex justify-end gap-3 pt-6">
-                  <Button type="button" variant="outline" onClick={() => navigate(createPageUrl('Dashboard'))} disabled={isSubmitting}>
+                  <Button type="button" variant="outline" onClick={() => navigate(createPageUrl('Dashboard'))} disabled={isSubmitting} className="border-gray-300 text-black hover:bg-gray-100">
                     Cancel
                   </Button>
                   <Button 
                     type="submit" 
                     disabled={isSubmitting || !formData.first_name || !formData.last_name || !formData.date_of_birth || !formData.main_position}
-                    className="bg-gradient-to-r from-red-500 to-orange-400 hover:from-red-600 hover:to-orange-500 text-white"
+                    className="bg-orange-500 hover:bg-orange-600 text-white"
                   >
                     <Save className="w-4 h-4 mr-2" />
                     {isSubmitting ? 'Saving...' : 'Add Child'}
