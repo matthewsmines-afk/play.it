@@ -47,7 +47,7 @@ const CoachDashboardTabs = ({ activeTab, onTabChange }) => {
   ];
 
   return (
-    <div className="bg-white border border-slate-200 rounded-lg p-1.5 mb-6">
+    <div className="bg-gray-100 border border-gray-200 rounded-lg p-1.5 mb-6">
       <div className="grid w-full grid-cols-4 gap-1.5">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -66,8 +66,8 @@ const CoachDashboardTabs = ({ activeTab, onTabChange }) => {
                 flex flex-col items-center justify-center gap-1 p-3 rounded-md
                 transition-all duration-200
                 ${isActive
-                  ? 'bg-slate-900 text-white'
-                  : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+                  ? 'bg-black text-white'
+                  : 'text-gray-700 hover:text-black hover:bg-white'
                 }
               `}
             >
@@ -294,15 +294,15 @@ const CoachDashboard = ({ user }) => {
 
   return (
     <div className="min-h-screen bg-transparent relative">
-      {/* Light Header Area */}
-      <div className="p-4 sm:p-6 bg-white border-b border-slate-200 relative z-10">
+      {/* Clean White Header */}
+      <div className="p-4 sm:p-6 bg-white border-b border-gray-200 relative z-10">
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900">
+              <h1 className="text-2xl sm:text-3xl font-bold text-black">
                 Coach Dashboard
               </h1>
-              <p className="text-sm text-slate-700 font-normal mt-2">
+              <p className="text-sm text-gray-600 font-normal mt-2">
                 Your central command center for teams and clubs.
               </p>
             </div>
@@ -333,11 +333,11 @@ const CoachDashboard = ({ user }) => {
         {activeTab === "my_teams" && (
           <div className="space-y-8">
             {safeTeams.length === 0 ? (
-              <Card className="text-center py-16 card-shadow bg-white/95 backdrop-blur-sm">
+              <Card className="text-center py-16 bg-white border border-gray-200">
                 <CardContent className="px-6">
-                  <Trophy className="w-16 h-16 mx-auto text-gray-300 mb-6" />
-                  <h3 className="text-xl font-semibold text-gray-700 mb-3">No teams yet</h3>
-                  <p className="text-base text-gray-500 mb-8 font-light leading-relaxed">Create your first team to get started with managing players, scheduling matches, and tracking performance.</p>
+                  <Trophy className="w-16 h-16 mx-auto text-gray-400 mb-6" />
+                  <h3 className="text-xl font-bold text-black mb-3">No teams yet</h3>
+                  <p className="text-base text-gray-600 mb-8 font-normal leading-relaxed">Create your first team to get started with managing players, scheduling matches, and tracking performance.</p>
                   <Button
                     onClick={() => navigate(createPageUrl('CreateTeam'))}
                     size="lg"
