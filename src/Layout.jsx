@@ -78,387 +78,57 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <>
-      <div
-        className="min-h-screen text-[var(--foreground)]"
-        style={{ backgroundColor: "#2D2C29" }}
-      >
+      <div className="min-h-screen bg-white">
         <style>
           {`
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
             
             body {
               font-family: 'Inter', sans-serif;
+              background-color: white;
             }
 
-            /* GLOBAL FONT RULES - NO ITALICS */
+            /* NO ITALICS */
             * {
               font-style: normal !important;
             }
             
-            /* ===== REFINED FONT HIERARCHY - MATCHING CREATE TEAM PAGE ===== */
+            /* Typography Hierarchy */
+            h1 { font-size: 24px; font-weight: 700; color: #0f172a; }
+            h2 { font-size: 18px; font-weight: 700; color: #0f172a; }
+            h3 { font-size: 16px; font-weight: 700; color: #0f172a; }
+            h4, h5, h6 { font-size: 14px; font-weight: 700; color: #0f172a; }
             
-            /* Base body text - 14px regular */
-            body, p, span, div, a, li {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-              line-height: 1.5 !important;
-              color: #1e293b !important;
-            }
-
-            /* Page Titles (h1) - 24px bold black */
-            h1, .text-2xl, .text-3xl {
-              font-size: 24px !important;
-              font-weight: 700 !important;
-              line-height: 1.3 !important;
-              color: #0f172a !important;
-            }
-
-            /* Card Section Headers (h2) - 18px bold black */
-            h2, [class*="CardTitle"], .card-title {
-              font-size: 18px !important;
-              font-weight: 700 !important;
-              line-height: 1.4 !important;
-              color: #0f172a !important;
-            }
-
-            /* Subsection Headers (h3) - 16px bold black */
-            h3 {
-              font-size: 16px !important;
-              font-weight: 700 !important;
-              line-height: 1.4 !important;
-              color: #0f172a !important;
-            }
-
-            /* Small Headers (h4, h5, h6) - 14px bold black */
-            h4, h5, h6 {
-              font-size: 14px !important;
-              font-weight: 700 !important;
-              line-height: 1.4 !important;
-              color: #0f172a !important;
-            }
-
-            /* Page subtitles and section descriptions - 13px regular muted */
-            .text-muted, 
-            .text-slate-500, 
-            .text-slate-600, 
-            .text-gray-500, 
-            .text-gray-600,
-            [class*="text-muted"] {
-              font-size: 13px !important;
-              font-weight: 400 !important;
-              color: #64748b !important;
-            }
-
-            /* Form labels - 14px bold black */
-            label,
-            [class*="Label"] {
-              font-size: 14px !important;
-              font-weight: 700 !important;
-              color: #0f172a !important;
-            }
-
-            /* Input fields, textareas, selects - 14px regular */
-            input[type="text"],
-            input[type="email"],
-            input[type="number"],
-            input[type="password"],
-            input[type="tel"],
-            textarea,
-            select {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-              color: #1e293b !important;
-            }
-
-            /* Input placeholders - 14px regular muted */
-            ::placeholder {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-              color: #94a3b8 !important;
-              font-style: normal !important;
-            }
-
-            /* Buttons - 14px semibold */
-            button {
-              font-size: 14px !important;
-              font-weight: 600 !important;
-              line-height: 1.4 !important;
-            }
-
-            /* Extra small text - 12px regular */
-            .text-xs, [class*="text-xs"] {
-              font-size: 12px !important;
-              font-weight: 400 !important;
+            body, p, span, div, a, li { 
+              font-size: 14px; 
+              font-weight: 400; 
+              color: #1e293b; 
             }
             
-            /* Small text - 13px regular */
-            .text-sm, [class*="text-sm"] {
-              font-size: 13px !important;
-              font-weight: 400 !important;
-            }
-
-            /* Base/medium text - 14px regular */
-            .text-base, [class*="text-base"] {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-            }
-
-            /* Large text - 16px */
-            .text-lg, [class*="text-lg"] {
-              font-size: 16px !important;
-            }
-
-            /* Extra large text - 18px */
-            .text-xl, [class*="text-xl"] {
-              font-size: 18px !important;
-            }
-
-            /* Bold text modifier */
-            .font-bold, .font-semibold, [class*="font-bold"], [class*="font-semibold"] {
-              font-weight: 700 !important;
-            }
-
-            /* Regular weight text modifier */
-            .font-normal, .font-light, [class*="font-normal"], [class*="font-light"] {
-              font-weight: 400 !important;
-            }
-
-            /* ===== DROPDOWN/SELECT SPECIFIC RULES ===== */
+            label { font-weight: 700; color: #0f172a; }
+            button { font-weight: 600; }
             
-            /* Select trigger button - 14px regular */
-            button[role="combobox"],
-            button[aria-haspopup="listbox"],
-            [class*="SelectTrigger"],
-            [class*="select-trigger"] {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-            }
-
-            /* All text inside select triggers */
-            button[role="combobox"] *,
-            button[aria-haspopup="listbox"] *,
-            [class*="SelectTrigger"] *,
-            [class*="select-trigger"] * {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-            }
-
-            /* SelectValue (placeholder/selected value) */
-            [class*="SelectValue"],
-            [data-placeholder],
-            span[data-state] {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-            }
-
-            /* Dropdown items */
-            select, 
-            [role="option"],
-            [role="menuitem"],
-            [data-radix-collection-item],
-            .select-item,
-            [class*="SelectItem"],
-            [class*="select-item"] {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-            }
-
-            /* Dropdown content containers */
-            [class*="SelectContent"],
-            [role="listbox"],
-            [data-radix-select-content] {
-              font-size: 14px !important;
-            }
-
-            /* Ensure all children inside dropdowns are 14px */
-            [class*="SelectContent"] *,
-            [role="listbox"] *,
-            [data-radix-select-content] * {
-              font-size: 14px !important;
-              font-weight: 400 !important;
-            }
-
-            /* ===== MAXIMUM TRANSPARENCY - SHOW PITCH EVERYWHERE ===== */
+            ::placeholder { color: #94a3b8; }
             
-            /* All Card components - highly transparent with strong blur */
-            [class*="Card"],
-            .card,
-            [data-card] {
-              background-color: rgba(255, 255, 255, 0.45) !important;
-              backdrop-filter: blur(12px) !important;
-              -webkit-backdrop-filter: blur(12px) !important;
-            }
-
-
-
-            /* Card headers specifically */
-            [class*="CardHeader"],
-            [class*="card-header"] {
-              background-color: transparent !important;
-            }
-
-            /* Card content */
-            [class*="CardContent"],
-            [class*="card-content"] {
-              background-color: transparent !important;
-            }
-
-            /* White backgrounds - make highly transparent */
-            .bg-white:not(.sidebar *),
-            [class*="bg-white"]:not(.sidebar *),
-            [style*="background-color: white"]:not(.sidebar *),
-            [style*="background-color: #fff"]:not(.sidebar *),
-            [style*="background-color: #ffffff"]:not(.sidebar *) {
-              background-color: rgba(255, 255, 255, 0.40) !important;
-              backdrop-filter: blur(12px) !important;
-              -webkit-backdrop-filter: blur(12px) !important;
-            }
-
-            /* Grey backgrounds - make highly transparent */
-            .bg-gray-50:not(.sidebar *),
-            .bg-gray-100:not(.sidebar *),
-            .bg-slate-50:not(.sidebar *),
-            .bg-slate-100:not(.sidebar *),
-            [class*="bg-gray-50"]:not(.sidebar *),
-            [class*="bg-gray-100"]:not(.sidebar *),
-            [class*="bg-slate-50"]:not(.sidebar *),
-            [class*="bg-slate-100"]:not(.sidebar *) {
-              background-color: rgba(248, 250, 252, 0.30) !important;
-              backdrop-filter: blur(10px) !important;
-              -webkit-backdrop-filter: blur(10px) !important;
-            }
-
-            /* Specific overrides for elements that need to stay transparent */
-            .bg-transparent,
-            [class*="bg-transparent"] {
-              background-color: transparent !important;
-              backdrop-filter: none !important;
-            }
-
-            /* Modal/Dialog backgrounds - semi-transparent */
-            [role="dialog"],
-            [data-radix-dialog-content],
-            .modal,
-            .dialog {
-              background-color: rgba(255, 255, 255, 0.55) !important;
-              backdrop-filter: blur(15px) !important;
-              -webkit-backdrop-filter: blur(15px) !important;
-            }
-
-            /* Dropdown menus - semi-transparent */
-            [role="menu"],
-            [data-radix-dropdown-content],
-            [data-radix-select-content],
-            .dropdown-content {
-              background-color: rgba(255, 255, 255, 0.60) !important;
-              backdrop-filter: blur(12px) !important;
-              -webkit-backdrop-filter: blur(12px) !important;
-            }
-
-            /* Popover content - semi-transparent */
-            [data-radix-popover-content],
-            .popover-content {
-              background-color: rgba(255, 255, 255, 0.60) !important;
-              backdrop-filter: blur(12px) !important;
-              -webkit-backdrop-filter: blur(12px) !important;
-            }
-
-            /* Input fields - keep readable but transparent */
-            input[type="text"],
-            input[type="email"],
-            input[type="number"],
-            input[type="password"],
-            input[type="tel"],
-            textarea,
-            select {
-              background-color: rgba(255, 255, 255, 0.50) !important;
-              backdrop-filter: blur(8px) !important;
-              -webkit-backdrop-filter: blur(8px) !important;
-            }
-
-            /* Header areas with white/grey backgrounds */
-            header[class*="bg-white"]:not([style*="background-color: #2D2C29"]),
-            .header[class*="bg-white"]:not([style*="background-color: #2D2C29"]) {
-              background-color: rgba(255, 255, 255, 0.45) !important;
-              backdrop-filter: blur(12px) !important;
-              -webkit-backdrop-filter: blur(12px) !important;
-            }
-
-            /* Keep sidebar fully opaque for readability */
-            .sidebar,
-            .sidebar *,
-            [data-sidebar],
-            [data-sidebar] * {
-              background-color: white !important;
-              backdrop-filter: none !important;
+            /* Orange accent for gradient buttons */
+            .bg-gradient-to-r.from-orange-500 { 
+              background: linear-gradient(to right, #f97316, #ef4444);
             }
             
-            /* CRITICAL: Text on dark backgrounds MUST be white/light */
+            /* Keep sidebar opaque */
+            .sidebar, .sidebar * { background-color: white !important; }
+            
+            /* Text on dark backgrounds stays white */
+            [class*="bg-black"] *, 
             [class*="bg-slate-900"] *, 
-            [class*="bg-slate-800"] *, 
-            [class*="bg-black"] *,
-            [class*="bg-gray-900"] *,
-            [class*="bg-gray-800"] *,
-            .dark-bg *,
-            [style*="background-color: #2D2C29"] *,
-            [style*="background-color: #1e293b"] *,
-            [style*="background-color: #0f172a"] * {
-              color: #ffffff !important;
+            [class*="bg-slate-800"] *,
+            [class*="bg-gray-900"] * { 
+              color: #ffffff !important; 
             }
-
-            /* White text on dark backgrounds - explicit class */
-            .text-white, [style*="color: white"], [style*="color: #fff"] {
-              color: #ffffff !important;
-            }
-
-            /* Ensure icons on dark backgrounds are white */
-            [class*="bg-slate-900"] svg, 
-            [class*="bg-slate-800"] svg, 
+            
             [class*="bg-black"] svg,
-            .dark-bg svg {
-              color: #ffffff !important;
-            }
-
-            :root, .theme-charcoal {
-              --background: 40 4% 17%; /* Charcoal #2D2C29 */
-              --foreground: 0 0% 100%; /* White */
-              
-              --card: 40 3% 22%; /* Darker Card #3A3936 */
-              --card-foreground: 0 0% 100%;
-
-              --primary: 0 0% 98%; /* Almost White */
-              --primary-foreground: 40 4% 17%; /* Charcoal */
-
-              --secondary: 14 83% 58%; /* Orange/Red */
-              --secondary-foreground: 0 0% 100%;
-
-              --muted: 40 3% 22%;
-              --muted-foreground: 0 0% 63%; /* Lighter Gray */
-              
-              --popover: 40 4% 17%;
-              --popover-foreground: 0 0% 100%;
-              
-              --border: 40 3% 30%; /* Lighter border for dark theme */
-              --input: 40 3% 30%;
-              --ring: 14 83% 58%;
-            }
-
-            /* --- White content pane styling --- */
-            .content-pane {
-                background-color: rgba(255, 255, 255, 0.65) !important;
-                backdrop-filter: blur(12px) !important;
-                -webkit-backdrop-filter: blur(12px) !important;
-                color: #111827;
-                border-top-left-radius: 2rem;
-                border-top-right-radius: 2rem;
-                margin-top: -1.25rem;
-                position: relative;
-                z-index: 10;
-            }
-
-            /* OPTIMIZED BACKGROUND IMAGE - Faster Loading */
-            .pitch-background {
-              display: none;
+            [class*="bg-slate-900"] svg { 
+              color: #ffffff !important; 
             }
           `}
         </style>
