@@ -134,10 +134,7 @@ export default function Layout({ children, currentPageName }) {
         </style>
 
         <SidebarProvider>
-          <div className="flex w-full min-h-screen bg-white relative">
-            {/* OPTIMIZED Background Image with CSS class */}
-            <div className="pitch-background" />
-
+          <div className="flex w-full min-h-screen bg-white">
             {/* --- DESKTOP SIDEBAR --- */}
             <Sidebar className="sidebar bg-white hidden md:flex relative z-20">
               <SidebarHeader className="p-6 bg-white">
