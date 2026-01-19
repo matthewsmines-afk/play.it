@@ -192,15 +192,12 @@ export default function Layout({ children, currentPageName }) {
             </Sidebar>
 
             {/* --- MAIN CONTENT AREA (Mobile and Desktop) --- */}
-            <main className="flex-1 flex flex-col w-full min-w-0 min-h-screen relative z-10">
+            <main className="flex-1 flex flex-col w-full min-w-0 min-h-screen bg-white">
               {/* --- MOBILE HEADER --- */}
-              <header
-                className="sticky top-0 z-20 px-4 py-3 md:hidden"
-                style={{ backgroundColor: "#2D2C29" }}
-              >
+              <header className="sticky top-0 z-20 px-4 py-3 md:hidden bg-white border-b border-gray-200">
                 <div className="flex items-center justify-between">
-                  <SidebarTrigger className="hover:bg-gray-800 p-2 rounded-lg transition-colors">
-                    <Menu className="w-6 h-6 text-white" />
+                  <SidebarTrigger className="hover:bg-gray-100 p-2 rounded-lg transition-colors">
+                    <Menu className="w-6 h-6 text-black" />
                   </SidebarTrigger>
                   <img src={newLogoUrl} alt="PLAY.IT" className="h-[13.6px]" />
                   {activeRole && (
